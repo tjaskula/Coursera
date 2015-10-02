@@ -20,7 +20,6 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
-
 % calculates hypothesis
 
 h = sigmoid(X * theta);
