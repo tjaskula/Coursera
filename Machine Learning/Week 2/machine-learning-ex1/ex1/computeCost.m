@@ -13,7 +13,10 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
-h = X * theta;
+% The result is a vector (h). The vector must be the second term 
+% of the multiplication. The number of rows of the vector must equal 
+% the number of columns of the matrix. That's why X is first and theta second
+h = X * theta; % hypothesis function (Theta' * x = theta_0 + theta_1 * x_1)
 squaredErrors = (h - y) .^ 2;
 J = (1 / (2 * m)) * sum(squaredErrors);
 
