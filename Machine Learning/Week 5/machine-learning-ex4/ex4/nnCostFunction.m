@@ -75,6 +75,15 @@ cost = -yVec .* log(h) - (1 - yVec) .* log(1 - h);
 
 J = (1 / m) * sum(sum(cost));
 
+% Problem 2 solution
+theta1ExcludingBias = Theta1(:, 2:end);
+theta2ExcludingBias = Theta2(:, 2:end);
+
+reg1 = sum(sum(theta1ExcludingBias .^ 2));
+reg2 = sum(sum(theta2ExcludingBias .^ 2));
+
+J = (1 / m) * sum(sum(cost)) + (lambda / (2 * m)) * (reg1 + reg2);
+
 % -------------------------------------------------------------
 
 % =========================================================================
