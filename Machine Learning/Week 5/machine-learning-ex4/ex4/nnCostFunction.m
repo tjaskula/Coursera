@@ -62,8 +62,18 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% Problem 1 solution
+a1 = [ones(m, 1) X];
+a2 = [ones(m, 1) sigmoid(a1 * Theta1')];
+h = sigmoid(a2 * Theta2');
 
+% Constructing a vector of result ex: for 5 of 10 the 1 should be at 
+% fifth position [0 0 0 0 1 0 0 0 0 0] where rows are training set samples
+yVec = repmat([1:num_labels], m, 1) == repmat(y, 1, num_labels);
 
+cost = -yVec .* log(h) - (1 - yVec) .* log(1 - h);
+
+J = (1 / m) * sum(sum(cost));
 
 % -------------------------------------------------------------
 
