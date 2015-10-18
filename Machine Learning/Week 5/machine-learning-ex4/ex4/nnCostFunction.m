@@ -84,6 +84,27 @@ reg2 = sum(sum(theta2ExcludingBias .^ 2));
 
 J = (1 / m) * sum(sum(cost)) + (lambda / (2 * m)) * (reg1 + reg2);
 
+delta1 = zeros(size(Theta1));
+delta2 = zeros(size(Theta2));
+
+for t = 1:m,
+
+	h1t = h(t, :)';
+	a1t = a1(t,:)';
+	a2t = a2(t, :)';
+	yVect = yVec(t, :)';
+
+	d3t = h1t - yVect;
+	z2t = [1; Theta1 * a1t];
+    d2t = Theta2' * d3t .* sigmoidGradient(z2t);
+
+    delta1 = delta1 + d2t(2:end) * a1t';
+    delta2 = delta2 + d3t * a2t';
+end;
+
+Theta1_grad = (1 / m) * delta1;
+Theta2_grad = (1 / m) * delta2;
+
 % -------------------------------------------------------------
 
 % =========================================================================
