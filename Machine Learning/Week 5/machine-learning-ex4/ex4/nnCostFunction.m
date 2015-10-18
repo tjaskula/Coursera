@@ -105,6 +105,12 @@ end;
 Theta1_grad = (1 / m) * delta1;
 Theta2_grad = (1 / m) * delta2;
 
+% solution for gradient regularization
+Theta1ZeroedBias = [ zeros(size(Theta1, 1), 1) theta1ExcludingBias ];
+Theta2ZeroedBias = [ zeros(size(Theta2, 1), 1) theta2ExcludingBias ];
+Theta1_grad = (1 / m) * delta1 + (lambda / m) * Theta1ZeroedBias;
+Theta2_grad = (1 / m) * delta2 + (lambda / m) * Theta2ZeroedBias;
+
 % -------------------------------------------------------------
 
 % =========================================================================
