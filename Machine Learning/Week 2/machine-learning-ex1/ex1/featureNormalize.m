@@ -26,7 +26,20 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
+n = size(X, 2);
 
+for i = 1:n
+
+	avg = mean(X(:, i));
+	deviation = std(X(:, i));
+
+	X_norm(1, n) = X_norm(1, n) .- avg;
+	X_norm(1, n) = X_norm(1, n) ./ deviation;
+
+	mu(1, n) = avg;
+	sigma(1, n) = deviation;
+
+end
 
 % ============================================================
 
