@@ -8,14 +8,21 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
   
   ## 'id' is an integer vector indicating the monitor ID numbers
   ## to be used
-  formatedId <- sprintf("%03d", id)
-  idPattern <- paste(formatedId, collapse="|")
-  filenames <- list.files(path = directory, pattern="*.csv", full.names=TRUE)
-  filenames <- filenames[grepl(idPattern, filenames)]
-  
+
   ## Return the mean of the pollutant across all monitors list
   ## in the 'id' vector (ignoring NA values)
   ## NOTE: Do not round the result!
+  readData <- function(id) {
+    path = paste(directory, paste(id, ".csv", sep=""), sep = "/")
+    df <- read.csv(path, sep=",")
+    df[[pollutant]]
+  } 
   
-  
+  data = numeric()
+  for (i in id) {
+    formatedId <- sprintf("%03d", i)
+    v <- readData(formatedId)
+    data <- c(data, v)
+  }
+  mean(data, na.rm = TRUE)
 }
