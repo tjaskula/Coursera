@@ -12,21 +12,21 @@ complete <- function(directory, id = 1:332) {
   ## ...
   ## where 'id' is the monitor ID number and 'nobs' is the
   ## number of complete cases
-
-  formatedId <- sprintf("%03d", id)
-  idPattern <- paste(formatedId, collapse="|")
-  filenames <- list.files(path = directory, pattern="*.csv", full.names=TRUE)
-  filenames <- filenames[grepl(idPattern, filenames)]
-  ldf <- lapply(filenames, read.csv)
+  readData <- function(id) {
+    path = paste(directory, paste(id, ".csv", sep=""), sep = "/")
+    df <- read.csv(path, sep=",")
+    df
+  } 
   
-  df <- do.call("rbind", ldf)
-  good <- complete.cases(df)
-  df <- df[good, ]
-  df <- aggregate(df$ID, by = list(id = df$ID), FUN = length)
-  names(df)[names(df)=="x"] <- "nobs"
-  o <- order(id)
-  df <- df[with(df, o),]
-  rownames(df) <- 1:nrow(df)
-  df
-  
+  data = data.frame()
+  for (i in id) {
+    formatedId <- sprintf("%03d", i)
+    v <- readData(formatedId)
+    goodCount <- sum(complete.cases(v))
+    newrow <- c(i, goodCount)
+    data <- rbind(data, newrow)
+    cols <- c("id","nobs")
+    colnames(data) <- cols
+  }
+  data
 }
