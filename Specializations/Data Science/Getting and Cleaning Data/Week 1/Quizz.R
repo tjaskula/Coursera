@@ -2,6 +2,7 @@ library(rJava)
 library(xlsxjars)
 library(xlsx)
 library(XML)
+library(data.table)
 
 question1Download <- function() {
   
@@ -58,4 +59,20 @@ question4Download <- function() {
 question4 <- function(rootNode) {
   zipCodes <- xpathSApply(rootNode, "//row[zipcode=21231]", xmlValue)
   length(zipCodes)
+}
+
+question5Download <- function() {
+  
+  if (!file.exists("data")) {
+    dir.create("data")
+  }
+  
+  fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv"
+  download.file(fileUrl, destfile = "./data/pid.csv", method = "curl")
+  dateDownloaded <- date()
+}
+
+question5ReadFile <- function() {
+  dt <- fread("./data/pid.csv")
+  dt
 }
