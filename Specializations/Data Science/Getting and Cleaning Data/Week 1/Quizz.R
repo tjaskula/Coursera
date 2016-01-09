@@ -11,5 +11,10 @@ question1Download <- function() {
 
 question1ReadFile <- function() {
   cameraData <- read.table("./data/cameras.csv", sep = ",", header = TRUE)
-  head(cameraData)
+  cameraData
+}
+
+question1 <- function() {
+  df <- question1ReadFile()
+  nrow(df[!is.na(df["VAL"]) & df["VAL"] == 24,])
 }
