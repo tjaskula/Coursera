@@ -1,7 +1,7 @@
 library(rJava)
 library(xlsxjars)
 library(xlsx)
-library(xml)
+library(XML)
 
 question1Download <- function() {
   
@@ -47,3 +47,15 @@ question3 <- function() {
   sum(dat$Zip*dat$Ext,na.rm=T)
 }
 
+question4Download <- function() {
+  
+  fileUrl <- "http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml"
+  doc <- xmlTreeParse(fileUrl, useInternalNodes = TRUE)
+  rootNode <- xmlRoot(doc)
+  rootNode
+}
+
+question4 <- function(rootNode) {
+  zipCodes <- xpathSApply(rootNode, "//row[zipcode=21231]", xmlValue)
+  length(zipCodes)
+}
