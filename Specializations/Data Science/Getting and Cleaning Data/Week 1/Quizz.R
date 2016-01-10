@@ -76,3 +76,9 @@ question5ReadFile <- function() {
   dt <- fread("./data/pid.csv")
   dt
 }
+
+runFunction <- function(f) {
+  for (i in 1:1000) {
+    f()
+  }
+}
