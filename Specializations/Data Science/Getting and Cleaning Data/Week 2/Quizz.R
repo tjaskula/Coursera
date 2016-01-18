@@ -14,13 +14,26 @@ question1 <- function() {
   json2[grep("datasharing", json2$name), "created_at"] 
 }
 
-#question 2
-question2 <- function() {
+loadCameras <- function() {
+  library(sqldf)
+  
   if (!file.exists("data")) {
     dir.create("data")
   }
   
-  fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv"
-  download.file(fileUrl, destfile = "./data/cameras.csv", method = "curl")
+  fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv"
+  download.file(fileUrl, destfile = "./data/cameras.csv")
   dateDownloaded <- date()
+}
+
+#question 2
+question2 <- function() {
+  
+  if (!file.exists("./data/cameras.csv")) {
+    loadCameras()
+  }
+  
+  acs <- read.table("./data/cameras.csv", sep = ",", header = TRUE)
+  
+  sqldf("select pwgtp1 from acs where AGEP < 50")
 }
