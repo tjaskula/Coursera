@@ -23,3 +23,13 @@ question1 <- function() {
   which(agricultureLogical)
 }
 
+#question 2
+question2 <- function() {
+  
+  if (!file.exists("./data/jeff.jpg")) {
+    download("https://d396qusza40orc.cloudfront.net/getdata%2Fjeff.jpg", "./data/jeff.jpg", mode = 'wb')
+  }
+  
+  img <- readJPEG("./data/jeff.jpg", native=TRUE)
+  quantile(img, probs = c(.30, .80))
+}
