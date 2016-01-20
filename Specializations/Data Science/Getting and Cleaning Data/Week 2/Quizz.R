@@ -14,15 +14,14 @@ question1 <- function() {
   json2[grep("datasharing", json2$name), "created_at"] 
 }
 
-loadCameras <- function() {
+download <- function(url, fileName) {
   library(sqldf)
   
   if (!file.exists("data")) {
     dir.create("data")
   }
   
-  fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv"
-  download.file(fileUrl, destfile = "./data/cameras.csv")
+  download.file(url, destfile = fileName)
   dateDownloaded <- date()
 }
 
@@ -43,7 +42,7 @@ question2 <- function() {
 question3 <- function() {
   
   if (!file.exists("./data/cameras.csv")) {
-    loadCameras()
+    download("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv", "./data/cameras.csv")
   }
   
   acs <- read.table("./data/cameras.csv", sep = ",", header = TRUE)
@@ -72,4 +71,17 @@ question4 <- function() {
   
   lengths
   
+}
+
+#question 5
+question5 <- function() {
+  
+  if (!file.exists("./data/wksst8110.fwf")) {
+    download("https://d396qusza40orc.cloudfront.net/getdata%2Fwksst8110.for", "./data/wksst8110.fwf")
+  }
+  
+  library(readr)
+  
+  df <- read_fwf(file="./data/wksst8110.fwf", skip=4, fwf_widths(c(12, 7, 4, 9, 4, 9, 4, 9, 4)))
+  sum(df[,4])
 }
