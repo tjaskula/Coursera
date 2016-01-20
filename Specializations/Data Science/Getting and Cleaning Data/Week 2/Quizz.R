@@ -31,7 +31,7 @@ question1 <- function() {
 question2 <- function() {
   
   if (!file.exists("./data/cameras.csv")) {
-    download()
+    download("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv", "./data/cameras.csv")
   }
   
   acs <- read.table("./data/cameras.csv", sep = ",", header = TRUE)
