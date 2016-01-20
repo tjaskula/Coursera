@@ -37,3 +37,16 @@ question2 <- function() {
   
   sqldf("select pwgtp1 from acs where AGEP < 50")
 }
+
+
+#question 3
+question3 <- function() {
+  
+  if (!file.exists("./data/cameras.csv")) {
+    loadCameras()
+  }
+  
+  acs <- read.table("./data/cameras.csv", sep = ",", header = TRUE)
+  
+  sqldf("select distinct AGEP from acs")
+}
