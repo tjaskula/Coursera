@@ -50,3 +50,26 @@ question3 <- function() {
   
   sqldf("select distinct AGEP from acs")
 }
+
+#question 4
+question4 <- function() {
+  
+  library(XML)
+  library(httr)
+  
+  html <- GET("http://biostat.jhsph.edu/~jleek/contact.html", use_proxy("localhost", 9978))
+  asText <- content(html, as = "text")
+  parsedHtml <- htmlParse(asText)
+  
+  splitted <- strsplit(asText, "\n")
+  
+  lines <- c(10, 20, 30, 100)
+  
+  lengths <- c()
+  for (line in lines) {
+    lengths <- c(lengths, nchar(splitted[[1]][line]))
+  }
+  
+  lengths
+  
+}
