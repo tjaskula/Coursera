@@ -1,6 +1,19 @@
 library(httr)
 library(httpuv) # only needed in R Studio
 library(base64enc)
+library(sqldf)
+library(XML)
+library(httr)
+
+download <- function(url, fileName) {
+  
+  if (!file.exists("data")) {
+    dir.create("data")
+  }
+  
+  download.file(url, destfile = fileName)
+  dateDownloaded <- date()
+}
 
 # question 1
 question1 <- function() {
@@ -12,17 +25,6 @@ question1 <- function() {
   json <- content(jeffrepo)
   json2 <- jsonlite::fromJSON(jsonlite::toJSON(json))
   json2[grep("datasharing", json2$name), "created_at"] 
-}
-
-download <- function(url, fileName) {
-  library(sqldf)
-  
-  if (!file.exists("data")) {
-    dir.create("data")
-  }
-  
-  download.file(url, destfile = fileName)
-  dateDownloaded <- date()
 }
 
 #question 2
@@ -52,9 +54,6 @@ question3 <- function() {
 
 #question 4
 question4 <- function() {
-  
-  library(XML)
-  library(httr)
   
   html <- GET("http://biostat.jhsph.edu/~jleek/contact.html", use_proxy("localhost", 9978))
   asText <- content(html, as = "text")
