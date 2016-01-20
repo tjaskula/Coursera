@@ -33,3 +33,20 @@ question2 <- function() {
   img <- readJPEG("./data/jeff.jpg", native=TRUE)
   quantile(img, probs = c(.30, .80))
 }
+
+#question 3
+question3 <- function() {
+  
+  if (!file.exists("./data/FGDP.csv")) {
+    download("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv", "./data/FGDP.csv")
+  }
+  
+  if (!file.exists("./data/FEDSTATS_Country.csv")) {
+    download("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv", "./data/FEDSTATS_Country.csv")
+  }
+  
+  df <- read.csv("./data/FGDP.csv", sep = ",", header = FALSE, skip = 5)
+  df2 <- read.csv("./data/FEDSTATS_Country.csv", sep = ",", header = TRUE)
+  merged <- merge(df, df2, by.x = "V1", by.y = "CountryCode", all = TRUE)
+  merged2 <- merged[order(merged$V2, decreasing = TRUE),]
+}
