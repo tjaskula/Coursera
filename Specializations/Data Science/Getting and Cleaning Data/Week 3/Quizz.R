@@ -54,3 +54,10 @@ question3 <- function() {
   
   merged
 }
+
+#question 4. Execute question3() to get the data.frame to pass in
+question4 <- function(df) {
+  df1 <- df[(df$Income.Group %in% "High income: OECD"),]
+  df2 <- df[(df$Income.Group %in% "High income: nonOECD"),]
+  c(mean(df1$V2), mean(df2$V2))
+}
