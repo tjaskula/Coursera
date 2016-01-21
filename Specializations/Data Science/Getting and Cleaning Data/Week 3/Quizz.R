@@ -48,5 +48,9 @@ question3 <- function() {
   df <- read.csv("./data/FGDP.csv", sep = ",", header = FALSE, skip = 5)
   df2 <- read.csv("./data/FEDSTATS_Country.csv", sep = ",", header = TRUE)
   merged <- merge(df, df2, by.x = "V1", by.y = "CountryCode", all = TRUE)
-  merged2 <- merged[order(merged$V2, decreasing = TRUE),]
+  merged$V2 <- as.numeric(as.character(merged$V2))
+  merged <- merged[(merged$V2 != "" & !(is.na(merged$V2))),]
+  merged <- merged[order(merged$V2, decreasing = TRUE),]
+  
+  merged
 }
