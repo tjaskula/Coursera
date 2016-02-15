@@ -9,3 +9,6 @@ Programming assignment 2 is in the following repository : https://github.com/tja
 
 Programming assignment is in the following repository : https://github.com/tjaskula/gettingandcleaningdata
 
+## Exploratory Data Analysis
+
+Plotting Assignment 1 is in the following repository : https://github.com/tjaskula/ExData_Plotting1
