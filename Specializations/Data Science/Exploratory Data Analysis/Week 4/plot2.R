@@ -14,8 +14,8 @@ totalEmissionByYear <- with(baltimore, tapply(Emissions, year, sum, na.rm = TRUE
 
 plot(x = names(totalEmissionByYear), y = totalEmissionByYear, 
      type = "p", pch = 16, col = "green", axes = FALSE,
-     ylab = "Total PM2.5 Emission (in tons)", xlab = "Year", 
-     main = "Total PM2.5 Emission from 1999 to 2008")
+     ylab = "PM2.5 Emission (in tons)", xlab = "Year", 
+     main = "Total PM2.5 Emission for Baltimore from 1999 to 2008")
 lines(x = names(totalEmissionByYear), y = totalEmissionByYear, col = "blue")
 axis(2) # x axis
 axis(side = 1, at = names(totalEmissionByYear)) # y axis
