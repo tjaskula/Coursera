@@ -8,10 +8,9 @@ SCC <- readRDS("exdata-data-NEI_data/Source_Classification_Code.rds")
 
 isBaltimore <- NEI$fips == "24510"
 baltimore <- subset(NEI, isBaltimore)
-rm(isBalt
-imore)
+rm(isBaltimore)
 
-totalEmissionByYear <- with(NEI, tappbaltimoreEmissions, year, sum, na.rm = TRUE))
+totalEmissionByYear <- with(baltimore, tapply(Emissions, year, sum, na.rm = TRUE))
 
 plot(x = names(totalEmissionByYear), y = totalEmissionByYear, 
      type = "p", pch = 16, col = "green", axes = FALSE,
