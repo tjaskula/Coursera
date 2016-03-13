@@ -18,6 +18,6 @@ totalEmissionByYearAndType <- aggregate(Emissions ~ year + type, data = baltimor
 
 qplot(x = year, y = Emissions, data = totalEmissionByYearAndType, col = type, facets = . ~ type) + 
   geom_line() +
-  labs(title = "Total PM2.5 Emission from 1999 to 2008 for Baltimore") + by type
+  labs(title = "Total PM2.5 Emission from 1999 to 2008 for Baltimore") +
   labs(x = "Year", y = "Tota5 Emission (in tons)") +
   scale_x_continuous(breaks = unique(totalEmissionByYearAndType$year))
