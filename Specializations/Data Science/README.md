@@ -12,3 +12,7 @@ Programming assignment is in the following repository : https://github.com/tjask
 ## Exploratory Data Analysis
 
 Plotting Assignment 1 is in the following repository : https://github.com/tjaskula/ExData_Plotting1
+
+## Reproducible Research
+
+Peer Assessment 1 is in the following repository : https://github.com/tjaskula/RepData_PeerAssessment1
