@@ -17,14 +17,50 @@ The data for this analysis can be downloaded from the following locations :
 * [National Weather Service Storm Data Documentation](https://d396qusza40orc.cloudfront.net/repdata%2Fpeer2_doc%2Fpd01016005curr.pdf)
 * [National Climatic Data Center Storm Events FAQ](https://d396qusza40orc.cloudfront.net/repdata%2Fpeer2_doc%2FNCDC%20Storm%20Events-FAQ%20Page.pdf)
 
-```{r}
+```{r, cache=TRUE, message=FALSE, results='hide', warning=FALSE}
 url <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2"
-  
-if (!file.exists("./data/StormData.csv.bz2")) {
-  dir.create("data")
-  download.file(url, destfile = "StormData.csv.bz2", method="curl")
-  bunzip2 ("StormData.csv.bz2", overwrite=TRUE, remove=FALSE, destname="StormData.csv")
-  dateDownloaded <- date()
-  stormdata <- read.csv ("StormData.csv", header=TRUE, stringsAsFactors=FALSE)
-}
+
+dir.create("data")
+download.file(url, destfile = "./data/StormData.csv.bz2", method="curl")
+
+stormdata <- read.csv ("./data/StormData.csv.bz2", header=TRUE, stringsAsFactors=FALSE)
 ```
+
+Let's explore data size
+
+```{r}
+dim(stormdata)
+```
+
+There is 902297 observations from 1950 to 2011
+
+Structure of the data:
+
+```{r}
+str(stormdata)
+```
+
+We would be interested in the following columns :
+
+* `EVTYPE`: wheater event type
+* `FATALITIES`: the number of fatalities
+* `INJURIES`: the number of injuries
+* `PROPDMG`: the property damage estimates as actual dollar amounts
+* `PROPDMGEXP`: Alphabetical characters used to signify magnitude. For example "K" for thousands, "M" for millions and "B" for billions
+* `CROPDMG`: the crop damage estimates as actual dollar amounts
+* `CROPDMGEXP`: Alphabetical characters used to signify magnitude. For example "K" for thousands, "M" for millions and "B" for billions
+
+## Analysing and processing the data
+
+Let's subset the data with the features that are of interest
+
+```{r}
+data <- stormdata[, c("EVTYPE", "FATALITIES", "INJURIES", "PROPDMG", "PROPDMGEXP","CROPDMG", "CROPDMGEXP")]
+```
+
+There is no missing values in the subset of selected storm data so we don't need to handle it specificlly.
+
+```{r}
+sum(is.na(data))
+```
+
