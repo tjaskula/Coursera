@@ -64,3 +64,19 @@ There is no missing values in the subset of selected storm data so we don't need
 sum(is.na(data))
 ```
 
+### Handling specific case of economic damage values
+
+Features `PROPDMGEXP` and `CROPDMGEXP` contain the magnitude of the damage estimates from `PROPDMGEXP` and `CROPDMG` respectively.
+
+The values for `PROPDMGEXP` are:
+
+```{r}
+unique(data$PROPDMGEXP)
+```
+
+The values for `CROPDMGEXP` are:
+
+```{r}
+unique(data$CROPDMGEXP)
+```
+
