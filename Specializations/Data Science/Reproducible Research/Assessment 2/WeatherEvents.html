@@ -188,8 +188,75 @@ stormdata &lt;- read.csv (&quot;./data/StormData.csv.bz2&quot;, header=TRUE, str
 </ul>
 </div>
 </div>
-<div id="analysing-the-data" class="section level2">
-<h2>Analysing the data</h2>
+<div id="analysing-and-processing-the-data" class="section level2">
+<h2>Analysing and processing the data</h2>
+<p>Let’s subset the data with the features that are of interest</p>
+<pre class="r"><code>data &lt;- stormdata[, c(&quot;EVTYPE&quot;, &quot;FATALITIES&quot;, &quot;INJURIES&quot;, &quot;PROPDMG&quot;, &quot;PROPDMGEXP&quot;,&quot;CROPDMG&quot;, &quot;CROPDMGEXP&quot;)]</code></pre>
+<p>There is no missing values in the subset of selected storm data so we don’t need to handle it specificlly.</p>
+<pre class="r"><code>sum(is.na(data))</code></pre>
+<pre><code>## [1] 0</code></pre>
+<div id="handling-specific-case-of-economic-damage-values" class="section level3">
+<h3>Handling specific case of economic damage values</h3>
+<p>Features <code>PROPDMGEXP</code> and <code>CROPDMGEXP</code> contain the magnitude of the damage estimates from <code>PROPDMGEXP</code> and <code>CROPDMG</code> respectively.</p>
+<p>The values for <code>PROPDMGEXP</code> are:</p>
+<pre class="r"><code>unique(data$PROPDMGEXP)</code></pre>
+<pre><code>##  [1] &quot;K&quot; &quot;M&quot; &quot;&quot;  &quot;B&quot; &quot;m&quot; &quot;+&quot; &quot;0&quot; &quot;5&quot; &quot;6&quot; &quot;?&quot; &quot;4&quot; &quot;2&quot; &quot;3&quot; &quot;h&quot; &quot;7&quot; &quot;H&quot; &quot;-&quot;
+## [18] &quot;1&quot; &quot;8&quot;</code></pre>
+<p>The values for <code>CROPDMGEXP</code> are:</p>
+<pre class="r"><code>unique(data$CROPDMGEXP)</code></pre>
+<pre><code>## [1] &quot;&quot;  &quot;M&quot; &quot;K&quot; &quot;m&quot; &quot;B&quot; &quot;?&quot; &quot;0&quot; &quot;k&quot; &quot;2&quot;</code></pre>
+<p>We can assume the following exponent based on the symbol:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Symbol</th>
+<th align="left">Exponent (<span class="math">\(10^x\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>&quot;&quot;</code> or <code>?</code> or <code>-</code> or <code>+</code> or <code>?</code> or <code>0</code></td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left"><code>+</code> or <code>1</code></td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>2</code> or <code>h</code> or <code>H</code></td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="left"><code>3</code> or <code>k</code> or <code>K</code></td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>4</code></td>
+<td align="left">4</td>
+</tr>
+<tr class="even">
+<td align="left"><code>5</code></td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>m</code> or <code>M</code> or <code>6</code></td>
+<td align="left">6</td>
+</tr>
+<tr class="even">
+<td align="left"><code>7</code></td>
+<td align="left">7</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>8</code></td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left"><code>9</code></td>
+<td align="left">9</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 
 

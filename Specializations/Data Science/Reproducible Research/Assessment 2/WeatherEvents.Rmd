@@ -66,7 +66,7 @@ sum(is.na(data))
 
 ### Handling specific case of economic damage values
 
-Features `PROPDMGEXP` and `CROPDMGEXP` contain the magnitude of the damage estimates from `PROPDMGEXP` and `CROPDMG` respectively.
+Features `PROPDMGEXP` and `CROPDMGEXP` contain the magnitude of the damage estimates from `PROPDMG` and `CROPDMG` respectively.
 
 The values for `PROPDMGEXP` are:
 
@@ -79,4 +79,53 @@ The values for `CROPDMGEXP` are:
 ```{r}
 unique(data$CROPDMGEXP)
 ```
+
+We can assume the following exponent based on the symbol:
+
+Symbol|Exponent (\(10^x\))
+--- | ---
+`""` or `?` or `-` or `?` or `0`|0
+`+` or `1`|1
+`2` or `h` or `H`|2
+`3` or `k` or `K`|3
+`4`|4
+`5`|5
+`m` or `M` or `6`|6
+`7`|7
+`8`|8
+`9`|9
+
+Convert `PROPDMG` and `CROPDMG` based on the exponents
+
+```{r}
+# Property damage
+data$PROPDMGEXP <- gsub("^$|-|\\?|0",  1E0, data$PROPDMGEXP)
+data$PROPDMGEXP <- gsub("[1|\\+]",  1E1, data$PROPDMGEXP)
+data$PROPDMGEXP <- gsub("[2|hH]", 1E2, data$PROPDMGEXP)
+data$PROPDMGEXP <- gsub("[3|kK]", 1E3, data$PROPDMGEXP)
+data$PROPDMGEXP <- gsub("[4]", 1E4, data$PROPDMGEXP) 
+data$PROPDMGEXP <- gsub("[5]", 1E5, data$PROPDMGEXP) 
+data$PROPDMGEXP <- gsub("[mM]|6", 1E6, data$PROPDMGEXP)
+data$PROPDMGEXP <- gsub("[7]", 1E7, data$PROPDMGEXP)
+data$PROPDMGEXP <- gsub("[8]", 1E8, data$PROPDMGEXP)
+data$PROPDMGEXP <- gsub("[bB]", 1E9, data$PROPDMGEXP)
+
+data$PROPDMG <- data$PROPDMG * as.numeric(data$PROPDMGEXP)
+
+# Crop damage
+data$CROPDMGEXP <- gsub("^$|-|\\?|0",  1E0, data$CROPDMGEXP)
+data$CROPDMGEXP <- gsub("[1|\\+]",  1E1, data$CROPDMGEXP)
+data$CROPDMGEXP <- gsub("[2|hH]", 1E2, data$CROPDMGEXP)
+data$CROPDMGEXP <- gsub("[3|kK]", 1E3, data$CROPDMGEXP)
+data$CROPDMGEXP <- gsub("[4]", 1E4, data$CROPDMGEXP) 
+data$CROPDMGEXP <- gsub("[5]", 1E5, data$CROPDMGEXP) 
+data$CROPDMGEXP <- gsub("[mM]|6", 1E6, data$CROPDMGEXP)
+data$CROPDMGEXP <- gsub("[7]", 1E7, data$CROPDMGEXP)
+data$CROPDMGEXP <- gsub("[8]", 1E8, data$CROPDMGEXP)
+data$CROPDMGEXP <- gsub("[bB]", 1E9, data$CROPDMGEXP)
+
+data$CROPDMG <- data$CROPDMG * as.numeric(data$CROPDMGEXP)
+```
+
+## Results
 
