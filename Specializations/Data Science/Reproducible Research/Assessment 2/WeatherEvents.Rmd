@@ -129,3 +129,100 @@ data$CROPDMG <- data$CROPDMG * as.numeric(data$CROPDMGEXP)
 
 ## Results
 
+### 10 most harmful wheater event related to fatalities and injuries
+
+```{r, results='hide', warning=FALSE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(gridExtra)
+```
+
+Summing the fatalities and injuries by weather event type.
+
+```{r}
+fatalities <- aggregate(data$FATALITIES, by = list(data$EVTYPE), sum)
+injuries <- aggregate(data$INJURIES, by = list(data$EVTYPE), sum)
+
+colnames(fatalities) <- c("EVTYPE", "FATALITIES")
+colnames(injuries) <- c("EVTYPE", "INJURIES")
+```
+
+Keep the top 10 fatalities and injuries
+
+```{r}
+top_10_fatalities <- arrange(fatalities, desc(FATALITIES))[1:10, ]
+top_10_injuries <- arrange(injuries, desc(INJURIES))[1:10, ]
+```
+
+Now, let's plot 10 most harmful event types related to fatalities and injuries
+
+```{r}
+plotFatalities <- ggplot(top_10_fatalities, aes(x = EVTYPE, y = FATALITIES)) + 
+                  geom_bar(stat='identity') +
+                  ggtitle('Top 10 wheater events for fatalities') +
+                  xlab('Type of event') +
+                  ylab('Total number of deaths') +
+                  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+plotInjuries <- ggplot(top_10_injuries, aes(x = EVTYPE, y = INJURIES)) + 
+                geom_bar(stat='identity') +
+                ggtitle('Top 10 wheater events for injuries') +
+                xlab('Type of event') +
+                ylab('Total number of Injuries') +
+                theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+grid.arrange(plotFatalities, plotInjuries, ncol=2)
+```
+
+**Figure 1: Most harmful weather events related to deaths and injuries from 1950 to 2011**
+
+The most harmful weather event is TORNADO for both fatalities and injuries.
+
+### 10 most harmful wheater event related to property damage and crop
+
+Summing the fatalities and injuries by weather event type.
+
+```{r}
+prop_damage <- aggregate(data$PROPDMG, by = list(data$EVTYPE), sum)
+crop_damage <- aggregate(data$CROPDMG, by = list(data$EVTYPE), sum)
+
+colnames(prop_damage) <- c("EVTYPE", "PROPDMG")
+colnames(crop_damage) <- c("EVTYPE", "CROPDMG")
+```
+
+Keep the top 10 property and crop damages
+
+```{r}
+top_10_prop_dam <- arrange(prop_damage, desc(PROPDMG))[1:10, ]
+top_10_crop_dam <- arrange(crop_damage, desc(CROPDMG))[1:10, ]
+```
+
+Now, let's plot 10 most harmful event types related to fatalities and injuries
+
+```{r}
+plotPropertyDam <- ggplot(top_10_prop_dam, aes(x = EVTYPE, y = PROPDMG)) + 
+                  geom_bar(stat='identity') +
+                  ggtitle('Top 10 wheater events for property damage') +
+                  xlab('Type of event') +
+                  ylab('Cost in US dollars') +
+                  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+plotCropDam <- ggplot(top_10_crop_dam, aes(x = EVTYPE, y = CROPDMG)) + 
+                geom_bar(stat='identity') +
+                ggtitle('Top 10 wheater events for crop damage') +
+                xlab('Type of event') +
+                ylab('Cost in US dollars') +
+                theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+grid.arrange(plotPropertyDam, plotCropDam, ncol=2)
+```
+
+**Figure 2: Most harmful weather events related to property and crop damage from 1950 to 2011**
+
+The most harmful weather event for property damage is FLOOD and for crop damage is DROUGHT.
+
+## Conclusion
+
+The most harmful weather event for public health is Tordnado. For economics we have consider the property damage where the Flood is what costs the most while for crop damage it is the Drought.
+
+

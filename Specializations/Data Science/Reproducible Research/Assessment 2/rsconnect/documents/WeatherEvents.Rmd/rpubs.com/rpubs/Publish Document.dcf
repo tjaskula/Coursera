@@ -1,0 +1,7 @@
+name: Publish Document
+account: rpubs
+server: rpubs.com
+bundleId:
+        https://api.rpubs.com/api/v1/document/167529/75600ef8563648a7a8b87212eb7b967e
+url: http://rpubs.com/tjaskula/167529
+when: 1459639703.29815
