@@ -1,0 +1,7 @@
+---
+title: "ToothGrowth basic exploratory data analysis"
+author: "Tomasz Jaskula"
+date: "26 avril 2016"
+output: pdf_document
+---
+
