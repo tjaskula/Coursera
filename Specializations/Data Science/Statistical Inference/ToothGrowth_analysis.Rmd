@@ -1,7 +1,117 @@
 ---
-title: "ToothGrowth basic exploratory data analysis"
+title: "Tooth Growth basic exploratory data analysis"
 author: "Tomasz Jaskula"
 date: "26 avril 2016"
 output: pdf_document
 ---
 
+## Summary
+
+In this project we are going to analyze the tooth growth data. We will use some confidence intervals and hypothesis tests to compare tooth growth by supp and dose.
+
+## Analysis
+
+### Load libraries
+
+```{r, results='hide', warning=FALSE, message=FALSE}
+library(ggplot2)
+```
+
+### Load the data
+
+```{r}
+library(datasets)
+data(ToothGrowth)
+```
+
+### Exploring the data
+
+Let's explore data size
+
+```{r}
+dim(ToothGrowth)
+```
+
+Structure of the data:
+
+```{r}
+str(ToothGrowth)
+```
+
+The column `supp` is a factor containing two levels:
+
+* OJ
+* VC
+
+Are there any missing data?
+
+```{r}
+sum(is.na(ToothGrowth))
+```
+
+There is no missing values.
+
+How the head of the data looks like:
+
+```{r}
+head(ToothGrowth)
+```
+
+Let's see the teeth growth by the dosage
+
+```{r}
+ggplot(ToothGrowth, aes(x=factor(dose), y=len, fill=factor(dose))) +
+  geom_boxplot() + 
+  facet_grid(.~supp) +
+  xlab("Dosage") +   
+  ylab("Teeth Growth") +  
+  ggtitle("Teeth Growth by supplement type")
+```
+
+This analysis show us that the dosage affects the tooth length, the larger the dosage, the longer the tooth.
+
+### Confidence intervals and hypothesis testing
+
+This section tries to answer the question if there is a colleration between the tooth growth and the supplement dosage.
+
+The null hypothesis states that there is no correlation between delivery method and tooth length
+
+#### Dosage as factor
+
+We split the data set into 3 datasets, one for each of the doses. This will allow to run the hypothesis test on all the three subsets.
+
+```{r}
+dose_05 <-subset(ToothGrowth, dose %in% c(0.5, 1.0))
+dose_1 <-subset(ToothGrowth, dose %in% c(0.5, 2.0))
+dose_2 <-subset(ToothGrowth, dose %in% c(1.0, 2.0))
+```
+
+Let's run the test on each subset
+
+```{r}
+t.test(len~dose, data=dose_05, paired=FALSE)
+```
+
+```{r}
+t.test(len~dose, data=dose_1, paired=FALSE)
+```
+
+```{r}
+t.test(len~dose, data=dose_2, paired=FALSE)
+```
+
+As we see those confidence intervals allows to reject the null hypothesis because there is a correlation between the tooth lenght and the dosage.
+
+#### Supplement as factor
+
+Let's test the effect of supplement on teeth growth
+
+```{r}
+t.test(len ~ supp, paired = F, var.equal = F, data = ToothGrowth)
+```
+
+The condifence interval doesn't allow to reject the null hypothesis. The supplement type is not correlated to the tooth growth.
+
+## Conclusion
+
+Increasing the dose has an effect on tooth growth however the supplement type has not. We assume that the poplulations are independent.
