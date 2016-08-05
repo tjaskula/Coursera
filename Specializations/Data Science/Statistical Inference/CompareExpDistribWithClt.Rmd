@@ -1,5 +1,5 @@
 ---
-title: "Comparaison of exponential distribution and Central Limit Theorem"
+title: "Comparison of exponential distribution and Central Limit Theorem"
 author: "Tomasz Jaskula"
 date: "26 avril 2016"
 output: pdf_document
