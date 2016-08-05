@@ -16,3 +16,11 @@ Plotting Assignment 1 is in the following repository : https://github.com/tjasku
 ## Reproducible Research
 
 Peer Assessment 1 is in the following repository : https://github.com/tjaskula/RepData_PeerAssessment1
+
+## Statistical Inference
+
+Tooth growth analysis code https://github.com/tjaskula/Coursera/tree/master/Specializations/Data%20Science/Statistical%20Inference
+Comparison of exponential distribution and Central Limit Theorem code https://github.com/tjaskula/Coursera/tree/master/Specializations/Data%20Science/Statistical%20Inference
+
+## Regression models
+
