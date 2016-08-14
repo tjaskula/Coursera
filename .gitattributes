@@ -1,3 +1,2 @@
-secretfile filter=git-crypt diff=git-crypt
 .gitattributes !filter !diff
 *.ipynb filter=git-crypt diff=git-crypt
