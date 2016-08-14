@@ -24,3 +24,5 @@ Comparison of exponential distribution and Central Limit Theorem code https://gi
 
 ## Regression models
 
+The submitted version of the analysis is in this repo (PDF version).
+For the full version look here: http://rpubs.com/tjaskula/200657
