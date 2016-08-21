@@ -1,3 +1,4 @@
 .gitattributes !filter !diff
 *.ipynb filter=git-crypt diff=git-crypt
 Main.scala filter=git-crypt diff=git-crypt
+FunSets.scala filter=git-crypt diff=git-crypt
