@@ -29,19 +29,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="_caaf78acf2527ae85370694bdeb67f0e_MaxPairwiseProduct.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/_caaf78acf2527ae85370694bdeb67f0e_MaxPairwiseProduct.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="18" column="52" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="52" />
-              <folding>
-                <element signature="e#1445#1446#0" expanded="false" />
-                <element signature="e#1500#1501#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="aplusb.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../aplusb.scala">
           <provider selected="true" editor-type-id="text-editor">
@@ -52,17 +39,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MaxPairwiseProduct.sc" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MaxPairwiseProduct.sc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/MaxPairwiseProduct.sc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="1" selection-start-line="10" selection-start-column="0" selection-end-line="19" selection-end-column="1" />
+            <state relative-caret-position="105">
+              <caret line="7" column="30" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MaxPairwiseProduct.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MaxPairwiseProduct.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/MaxPairwiseProduct.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -89,8 +76,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/scala/MaxPairwiseProduct.sc" />
         <option value="$PROJECT_DIR$/src/main/scala/MaxPairwiseProduct.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/MaxPairwiseProduct.sc" />
       </list>
     </option>
   </component>
@@ -602,6 +589,16 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/Downloads/_caaf78acf2527ae85370694bdeb67f0e_MaxPairwiseProduct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="31" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../aplusb.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -610,29 +607,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/_caaf78acf2527ae85370694bdeb67f0e_MaxPairwiseProduct.java">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/MaxPairwiseProduct.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="18" column="52" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="52" />
-          <folding>
-            <element signature="e#1445#1446#0" expanded="false" />
-            <element signature="e#1500#1501#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="25" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/MaxPairwiseProduct.sc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="1" selection-start-line="10" selection-start-column="0" selection-end-line="19" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/MaxPairwiseProduct.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="25" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="25" />
+        <state relative-caret-position="105">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="30" />
           <folding />
         </state>
       </provider>
