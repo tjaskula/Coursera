@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/all.iml" filepath="$PROJECT_DIR$/.idea/modules/all.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/all-build.iml" filepath="$PROJECT_DIR$/.idea/modules/all-build.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/progfunall.iml" filepath="$PROJECT_DIR$/.idea/modules/progfunall.iml" />
     </modules>
   </component>
 </project>
