@@ -2,5 +2,6 @@
 *.ipynb filter=git-crypt diff=git-crypt
 Main.scala filter=git-crypt diff=git-crypt
 FunSets.scala filter=git-crypt diff=git-crypt
+TweetSet.scala filter=git-crypt diff=git-crypt
 MaxPairwiseProduct.scala filter=git-crypt diff=git-crypt
 MaxPairwiseProduct.sc filter=git-crypt diff=git-crypt
