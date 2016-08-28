@@ -8,3 +8,5 @@ MaxPairwiseProduct.sc filter=git-crypt diff=git-crypt
 FibonacciImp.scala filter=git-crypt diff=git-crypt
 Fibonacci.sc filter=git-crypt diff=git-crypt
 FibonacciImp.hs filter=git-crypt diff=git-crypt
+FibonacciLastDigitImp.scala filter=git-crypt diff=git-crypt
+FibonacciLastDigitImp.hs filter=git-crypt diff=git-crypt
