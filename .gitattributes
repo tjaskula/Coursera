@@ -11,3 +11,5 @@ FibonacciImp.hs filter=git-crypt diff=git-crypt
 FibonacciLastDigitImp.scala filter=git-crypt diff=git-crypt
 FibonacciLastDigitImp.hs filter=git-crypt diff=git-crypt
 FibonacciLastDigitImp2.hs filter=git-crypt diff=git-crypt
+GcdImp.scala filter=git-crypt diff=git-crypt
+Gcd.sc filter=git-crypt diff=git-crypt
