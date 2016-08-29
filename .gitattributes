@@ -5,12 +5,6 @@ FunSets.scala filter=git-crypt diff=git-crypt
 TweetSet.scala filter=git-crypt diff=git-crypt
 MaxPairwiseProduct.scala filter=git-crypt diff=git-crypt
 MaxPairwiseProduct.sc filter=git-crypt diff=git-crypt
-FibonacciImp.scala filter=git-crypt diff=git-crypt
-Fibonacci.sc filter=git-crypt diff=git-crypt
-FibonacciImp.hs filter=git-crypt diff=git-crypt
-FibonacciLastDigitImp.scala filter=git-crypt diff=git-crypt
-FibonacciLastDigitImp.hs filter=git-crypt diff=git-crypt
-FibonacciLastDigitImp2.hs filter=git-crypt diff=git-crypt
-GcdImp.scala filter=git-crypt diff=git-crypt
-Gcd.sc filter=git-crypt diff=git-crypt
-GcdImp.hs filter=git-crypt diff=git-crypt
+*Imp.scala filter=git-crypt diff=git-crypt
+*Imp.sc filter=git-crypt diff=git-crypt
+*Imp.hs filter=git-crypt diff=git-crypt
