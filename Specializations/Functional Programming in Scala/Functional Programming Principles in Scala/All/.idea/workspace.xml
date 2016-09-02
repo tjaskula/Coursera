@@ -78,11 +78,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lecture4.6.sc" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lecture4.6.sc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/week4/lecture4.6.sc">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="11" column="67" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lecture4.7.sc" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/week4/lecture4.7.sc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -111,6 +121,7 @@
         <option value="$PROJECT_DIR$/src/main/scala/week3/lecture3.1.sc" />
         <option value="$PROJECT_DIR$/src/main/scala/week4/lecture4.4.sc" />
         <option value="$PROJECT_DIR$/src/main/scala/week4/lecture4.6.sc" />
+        <option value="$PROJECT_DIR$/src/main/scala/week4/lecture4.7.sc" />
       </list>
     </option>
   </component>
@@ -823,6 +834,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="67" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/week4/lecture4.7.sc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
           <folding />
         </state>
       </provider>
