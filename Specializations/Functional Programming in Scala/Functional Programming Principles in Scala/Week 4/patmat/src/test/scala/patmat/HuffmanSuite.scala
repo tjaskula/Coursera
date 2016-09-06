@@ -9,10 +9,10 @@ import patmat.Huffman._
 
 @RunWith(classOf[JUnitRunner])
 class HuffmanSuite extends FunSuite {
-	trait TestTrees {
-		val t1 = Fork(Leaf('a',2), Leaf('b',3), List('a','b'), 5)
-		val t2 = Fork(Fork(Leaf('a',2), Leaf('b',3), List('a','b'), 5), Leaf('d',4), List('a','b','d'), 9)
-	}
+  trait TestTrees {
+    val t1 = Fork(Leaf('a',2), Leaf('b',3), List('a','b'), 5)
+    val t2 = Fork(Fork(Leaf('a',2), Leaf('b',3), List('a','b'), 5), Leaf('d',4), List('a','b','d'), 9)
+  }
 
 
   test("weight of a larger tree") {
@@ -40,11 +40,11 @@ class HuffmanSuite extends FunSuite {
   }
 
   test("makeOrderedLeafList for some frequency table 2") {
-    assert(makeOrderedLeafList(List(('c', 1), ('a', 2), ('b', 3))) === List(Leaf('a',2), Leaf('b',3), Leaf('c',1)))
+    assert(makeOrderedLeafList(List(('a',2), ('b',3), ('c',1))) === List(Leaf('c', 1), Leaf('a', 2), Leaf('b', 3)))
   }
 
   test("singleton with unique code tree") {
-    assert(singleton(List(Leaf('a', 1), Leaf('b', 1), Leaf('c', 1))) === true)
+    assert(singleton(List(Fork(Leaf('a', 1), Leaf('b', 1), "ab".toList, 2))) === true)
   }
 
   test("singleton with non unique code tree") {
