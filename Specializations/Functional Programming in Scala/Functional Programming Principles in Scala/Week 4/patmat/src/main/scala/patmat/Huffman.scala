@@ -92,11 +92,15 @@ object Huffman {
   /**
     * Checks whether the list `trees` contains only one single code tree.
     */
-  def singleton(trees: List[CodeTree]): Boolean = trees match {
-    case List() => true
-    case (x:Fork) :: xs => singleton(List(x.left)) && singleton(List(x.right)) && singleton(xs)
-    case (x:Leaf) :: xs => if (x.weight == 1) singleton(xs) else false
-    case _ => false
+  def singleton(trees: List[CodeTree]): Boolean = {
+    def singletonIter(trees: List[CodeTree], scanned: List[Char]): Boolean = trees match {
+      case List() => true
+      case (x:Fork) :: xs => singletonIter(List(x.left), scanned) && singletonIter(List(x.right), scanned) && singleton(xs)
+      case (x:Leaf) :: xs => if (scanned.contains(x.char)) false else singletonIter(xs, x.char :: scanned)
+      case _ => false
+    }
+    if (trees.isEmpty) false
+    else singletonIter(trees, Nil)
   }
 
   /**
