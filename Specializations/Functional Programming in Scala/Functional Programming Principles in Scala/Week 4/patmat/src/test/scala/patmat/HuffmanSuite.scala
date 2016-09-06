@@ -21,7 +21,6 @@ class HuffmanSuite extends FunSuite {
     }
   }
 
-
   test("chars of a larger tree") {
     new TestTrees {
       assert(chars(t2) === List('a','b','d'))
@@ -40,6 +39,17 @@ class HuffmanSuite extends FunSuite {
     assert(makeOrderedLeafList(List(('t', 2), ('e', 1), ('x', 3))) === List(Leaf('e',1), Leaf('t',2), Leaf('x',3)))
   }
 
+  test("makeOrderedLeafList for some frequency table 2") {
+    assert(makeOrderedLeafList(List(('c', 1), ('a', 2), ('b', 3))) === List(Leaf('a',2), Leaf('b',3), Leaf('c',1)))
+  }
+
+  test("singleton with unique code tree") {
+    assert(singleton(List(Leaf('a', 1), Leaf('b', 1), Leaf('c', 1))) === true)
+  }
+
+  test("singleton with non unique code tree") {
+    assert(singleton(List(Leaf('a', 1), Leaf('b', 2), Leaf('c', 1))) === false)
+  }
 
   test("combine of some leaf list") {
     val leaflist = List(Leaf('e', 1), Leaf('t', 2), Leaf('x', 4))
@@ -50,6 +60,24 @@ class HuffmanSuite extends FunSuite {
   test("decode and encode a very short text should be identity") {
     new TestTrees {
       assert(decode(t1, encode(t1)("ab".toList)) === "ab".toList)
+    }
+  }
+
+  test("decode and encode a short text should be identity") {
+    new TestTrees {
+      assert(decode(t2, encode(t2)("abd".toList)) === "abd".toList)
+    }
+  }
+
+  test("encode a very short text should be identity") {
+    new TestTrees {
+      assert(encode(t1)("ab".toList) === List(0, 1))
+    }
+  }
+
+  test("encode a short text should be identity") {
+    new TestTrees {
+      assert(encode(t2)("abd".toList) === List(0, 0, 0, 1, 1))
     }
   }
 
