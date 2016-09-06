@@ -8,3 +8,4 @@ MaxPairwiseProduct.sc filter=git-crypt diff=git-crypt
 *Imp.scala filter=git-crypt diff=git-crypt
 *Imp.sc filter=git-crypt diff=git-crypt
 *Imp.hs filter=git-crypt diff=git-crypt
+Huffman.scala filter=git-crypt diff=git-crypt
