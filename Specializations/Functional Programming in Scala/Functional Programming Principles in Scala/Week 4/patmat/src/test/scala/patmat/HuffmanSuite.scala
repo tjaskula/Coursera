@@ -48,7 +48,7 @@ class HuffmanSuite extends FunSuite {
   }
 
   test("singleton with non unique code tree") {
-    assert(singleton(List(Leaf('a', 1), Leaf('b', 2), Leaf('c', 1))) === false)
+    assert(singleton(List(Leaf('a', 1), Leaf('b', 2), Leaf('a', 1))) === false)
   }
 
   test("combine of some leaf list") {
