@@ -1,6 +1,7 @@
 
 *token.mat*
 *checkpoint.ipynb*
+.DS_Store
 
 # SCALA
 *.class
