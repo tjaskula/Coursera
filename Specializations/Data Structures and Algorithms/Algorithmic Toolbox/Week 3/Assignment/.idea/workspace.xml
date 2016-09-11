@@ -29,41 +29,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DotProductImp.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/DotProductImp.scala">
+      <file leaf-file-name="DifferentSummandsImp.sc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/DifferentSummandsImp.sc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+            <state relative-caret-position="285">
+              <caret line="19" column="74" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FractionalKnapsackImp.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/FractionalKnapsackImp.scala">
+      <file leaf-file-name="DifferentSummandsImp.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/DifferentSummandsImp.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+            <state relative-caret-position="240">
+              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DotProductImp.sc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/DotProductImp.sc">
+      <file leaf-file-name="ChangeImp.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/ChangeImp.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoveringSegmentsImp.sc" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/CoveringSegmentsImp.sc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2220">
-              <caret line="148" column="18" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="18" />
+            <state relative-caret-position="225">
+              <caret line="15" column="3" selection-start-line="12" selection-start-column="2" selection-end-line="15" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -72,8 +62,8 @@
       <file leaf-file-name="CoveringSegmentImp.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/CoveringSegmentImp.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+            <state relative-caret-position="345">
+              <caret line="32" column="76" selection-start-line="31" selection-start-column="2" selection-end-line="32" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -84,6 +74,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Scala Script" />
         <option value="Scala Worksheet" />
       </list>
     </option>
@@ -106,6 +97,8 @@
         <option value="$PROJECT_DIR$/src/main/scala/CoveringSegments2Imp.sc" />
         <option value="$PROJECT_DIR$/src/main/scala/CoveringSegmentImp.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/CoveringSegmentsImp.sc" />
+        <option value="$PROJECT_DIR$/src/main/scala/DifferentSummandsImp.sc" />
+        <option value="$PROJECT_DIR$/src/main/scala/DifferentSummandsImp.scala" />
       </list>
     </option>
   </component>
@@ -224,7 +217,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.scala.compiler.ScalaCompileServerForm" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../02_greedy_algorithms_starter_files/covering_segments/CoveringSegments.java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../02_greedy_algorithms_starter_files/different_summands/DifferentSummands.java" />
   </component>
   <component name="RunManager" selected="Application.FractionalKnapsackImp">
     <configuration default="false" name="FractionalKnapsackImp" type="Application" factoryName="Application" temporary="true">
@@ -748,14 +741,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/ChangeImp.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/FractionalKnapsackImp.sc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -779,10 +764,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/CoveringSegments2Imp.sc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1508">
+          <caret line="12" column="55" selection-start-line="0" selection-start-column="0" selection-end-line="148" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/DotProductImp.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/CoveringSegmentsImp.sc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2220">
+          <caret line="148" column="18" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../02_greedy_algorithms_starter_files/different_summands/DifferentSummands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="30" />
+          <folding>
+            <element signature="e#158#167#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/FractionalKnapsackImp.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -795,34 +814,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/FractionalKnapsackImp.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/ChangeImp.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        <state relative-caret-position="225">
+          <caret line="15" column="3" selection-start-line="12" selection-start-column="2" selection-end-line="15" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/CoveringSegmentImp.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        <state relative-caret-position="345">
+          <caret line="32" column="76" selection-start-line="31" selection-start-column="2" selection-end-line="32" selection-end-column="76" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/CoveringSegments2Imp.sc">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/DifferentSummandsImp.sc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1508">
-          <caret line="12" column="55" selection-start-line="0" selection-start-column="0" selection-end-line="148" selection-end-column="18" />
+        <state relative-caret-position="285">
+          <caret line="19" column="74" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/CoveringSegmentsImp.sc">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/DifferentSummandsImp.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2220">
-          <caret line="148" column="18" selection-start-line="148" selection-start-column="18" selection-end-line="148" selection-end-column="18" />
+        <state relative-caret-position="240">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
           <folding />
         </state>
       </provider>
