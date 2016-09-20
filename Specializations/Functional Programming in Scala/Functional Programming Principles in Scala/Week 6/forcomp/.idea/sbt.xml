@@ -16,6 +16,5 @@
         <option name="useOurOwnAutoImport" value="true" />
       </SbtProjectSettings>
     </option>
-    <option name="vmParameters" value="-XX:MaxPermSize=384M -Dhttp.proxyHost=localhost -Dhttp.proxyPort=9978 -Dhttps.proxyHost=localhost -Dhttps.proxyPort=9978" />
   </component>
 </project>

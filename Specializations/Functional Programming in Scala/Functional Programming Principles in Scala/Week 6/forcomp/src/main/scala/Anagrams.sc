@@ -1,3 +1,7 @@
-import forcomp._
+import forcomp.Anagrams
+import forcomp.Anagrams.{Occurrences, Word}
 
-Anagrams.dictionary map {case w => (Anagrams.wordOccurrences(w), w)} groupBy(t => t._2) flatten
+"Aarhus".toLowerCase
+
+//def dico: Map[Occurrences, List[Word] =
+//Anagrams.dictionary.groupBy((g) => Anagrams.wordOccurrences(g)) withDefaultValue List()
