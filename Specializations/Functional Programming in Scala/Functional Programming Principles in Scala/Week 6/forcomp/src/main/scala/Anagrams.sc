@@ -1,0 +1,1 @@
+"abattor" groupBy (elem => elem) map { case (k, v) => (k, v.length)} toList
