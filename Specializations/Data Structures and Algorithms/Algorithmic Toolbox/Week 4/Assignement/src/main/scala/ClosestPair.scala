@@ -50,7 +50,8 @@ object ClosestPair {
         min(sigma, stripClosest(candidates, sigma))
       }
     }
-    closestPairsIter(points.sortWith((t1, t2) => t1.x < t2.x), points.sortWith((t1, t2) => t1.y < t2.y))
+    val res = closestPairsIter(points.sortWith((t1, t2) => t1.x < t2.x), points.sortWith((t1, t2) => t1.y < t2.y))
+    BigDecimal(res).setScale(6, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
   def main(args: Array[String]): Unit = {
