@@ -27,7 +27,7 @@ object ClosestPair {
 
     for (i <- 0 until strip.length; j <- i + 1 until strip.length) {
       if ((strip(j).y - strip(i).y) < minDistance) {
-        if (getDistance(strip(i), strip(j)) < minDistance)
+        if (getDistance(strip(i), strip(j)) < min)
           min = getDistance(strip(i), strip(j))
       }
     }
