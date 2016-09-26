@@ -25,11 +25,10 @@ object ClosestPair {
   def stripClosest(strip: List[Point], minDistance: Double) = {
     var min = minDistance
 
-    for (i <- 0 until strip.length; j <- i + 1 until strip.length) {
-      if ((strip(j).y - strip(i).y) < min) {
-        if (getDistance(strip(i), strip(j)) < min)
-          min = getDistance(strip(i), strip(j))
-      }
+    for (i <- 0 until strip.length; j <- i + 1 until strip.length if (strip(j).y - strip(i).y) < min) {
+      val distance = getDistance(strip(i), strip(j))
+      if (distance < min)
+        min = getDistance(strip(i), strip(j))
     }
     min
   }
@@ -46,7 +45,7 @@ object ClosestPair {
         val sigmaL = closestPairsIter(subPointsXL, subPointsYL)
         val sigmaR = closestPairsIter(subPointsXR, subPointsYR)
         val sigma = min(sigmaL, sigmaR)
-        val candidates = subPointsY filter (p => abs(p.x - midPoint.x) < sigma)
+        val candidates = subPointsX filter (p => abs(p.x - midPoint.x) < sigma)
         min(sigma, stripClosest(candidates, sigma))
       }
     }
