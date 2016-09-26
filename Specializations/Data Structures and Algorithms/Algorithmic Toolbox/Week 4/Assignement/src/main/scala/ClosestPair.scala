@@ -41,8 +41,10 @@ object ClosestPair {
       else {
         val mid = subPointsX.length / 2
         val midPoint = subPointsX(mid)
-        val (subPointsYL, subPointsYR) = subPointsY splitAt mid
-        val (subPointsXL, subPointsXR) = subPointsX splitAt mid
+        val subPointsYL = subPointsY slice (0, mid + 1)
+        val subPointsYR = subPointsY slice (mid - 1, subPointsY.length)
+        val subPointsXL = subPointsX slice (0, mid + 1)
+        val subPointsXR = subPointsX slice (mid - 1, subPointsX.length)
         val sigmaL = closestPairsIter(subPointsXL, subPointsXR)
         val sigmaR = closestPairsIter(subPointsYL, subPointsYR)
         val sigma = min(sigmaL, sigmaR)
