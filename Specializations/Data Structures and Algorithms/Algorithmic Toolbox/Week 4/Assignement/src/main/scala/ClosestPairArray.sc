@@ -2,7 +2,6 @@ import math._
 
 class Point(var x: Int, var y: Int) {
   override def toString: String = "Point(" + x + ", " + y + ")"
-
 }
 
 def getDistance(p1: Point, p2: Point): Double =
@@ -48,7 +47,7 @@ def closestPairs(points: Array[Point], s: Int): Double = {
       val candidates = Array.ofDim[Point](size)
       var j = 0
       for (i <- 0 until size) {
-        if (abs(subPointsX(i).x - midPoint.x) < sigma / 1.5) {
+        if (abs(subPointsX(i).x - midPoint.x) < sigma) {
           candidates(j) = subPointsX(i)
           j = j + 1
         }
