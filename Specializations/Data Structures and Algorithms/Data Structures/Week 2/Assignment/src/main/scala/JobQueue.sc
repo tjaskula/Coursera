@@ -1,6 +1,5 @@
 class JobQueue(val a: Array[Int], val size: Int, val swaps: StringBuilder = new StringBuilder("")) {
 
-  var swapCount: Int = 0
 
   def leftChild(i: Int) = 2 * i + 1
 
@@ -11,7 +10,6 @@ class JobQueue(val a: Array[Int], val size: Int, val swaps: StringBuilder = new 
     a(i) = a(maxIndex)
     a(maxIndex) = temp
     swaps.append(i + " "+ maxIndex + "\n")
-    swapCount += 1
   }
 
   def siftDown(i: Int): Unit = {
@@ -32,6 +30,6 @@ class JobQueue(val a: Array[Int], val size: Int, val swaps: StringBuilder = new 
     for (i <- size / 2 to 0 by -1) {
       siftDown(i)
     }
-    swapCount + "\n" + swaps.toString()
+    ""
   }
 }
