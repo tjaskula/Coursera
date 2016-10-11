@@ -1,4 +1,7 @@
-class HeapBuilder(val a: Array[Int], var size: Int, val maxSize: Int) {
+import scala.math.Ordering.Implicits._
+import scala.collection.mutable.PriorityQueue
+
+class MinHeap(val a: Array[Long], var size: Int, val maxSize: Int) {
 
   def parent(i: Int) = i / 2
 
@@ -45,7 +48,7 @@ class HeapBuilder(val a: Array[Int], var size: Int, val maxSize: Int) {
     }
   }
 
-  def extractMin(): Int = {
+  def extractMin(): Long = {
     val result = a(0)
     a(0) = a(size)
     size = size - 1
@@ -53,7 +56,7 @@ class HeapBuilder(val a: Array[Int], var size: Int, val maxSize: Int) {
     result
   }
 
-  def build(): Array[Int] = {
+  def build(): Array[Long] = {
     for (i <- size / 2 to 0 by -1) {
       siftDown(i)
     }
@@ -61,28 +64,38 @@ class HeapBuilder(val a: Array[Int], var size: Int, val maxSize: Int) {
   }
 }
 
-val a1 = Array(1, 2, 3, 4, 5)
-val hp1 = new HeapBuilder(a1, 4, 4)
-
-val th1 = new HeapBuilder(Array(0, 1), 1, 1)
-
-var assignedWorkers = scala.collection.mutable.Map[Int, List[Int]]()
-var i = 0
-while (!hp1.isEmpty) {
-  if (assignedWorkers.contains(i)) {
-    for (w <- 0 until assignedWorkers(i).length) {
-      th1.insert(assignedWorkers(i)(w))
-    }
-  }
-  while (!th1.isEmpty) {
-    val bestWorker = th1.extractMin()
-    val jobDuration = hp1.extractMin()
-    var l: List[Int] = Nil
-    if (assignedWorkers.contains(i + jobDuration)) {
-      l = assignedWorkers(i + jobDuration)
-    }
-    assignedWorkers.put(i + jobDuration, bestWorker :: l)
-    println(bestWorker + " " + i)
-  }
-  i = i + 1
+object MinOrder extends Ordering[(Int, Int)] {
+  def compare(x:(Int, Int), y:(Int, Int)) = y._2 compare x._2
 }
+
+val busyThreads = new PriorityQueue[(Long, Long)]()(MinOrder)
+val nQueue = busyThreads.takeWhile(t => t._2 == 1L)
+
+def iterWorkers(th: MinHeap, hp: MinHeap, threads: Int): Unit = {
+  val busyThreads = Array.ofDim[Long](threads)
+  var i = 0
+  while (!hp.isEmpty) {
+    if (busyThreads())
+    while (!th.isEmpty) {
+      val bestWorker = th.extractMin().toInt
+      val jobDuration = hp.extractMin()
+      busyThreads(bestWorker) = i + jobDuration
+      println(bestWorker + " " + i)
+    }
+    i = i + 1
+  }
+}
+
+val a1 = Array[Long](1, 2, 3, 4, 5)
+val hp1 = new MinHeap(a1, 4, 4)
+val th1 = new MinHeap(Array[Long](0, 1), 1, 1)
+
+iterWorkers(th1, hp1, 2)
+
+val a2 = Array[Long](1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+val t2 = Array[Long](0, 1, 2, 3)
+
+val hp2 = new MinHeap(a2, 19, 19)
+val th2 = new MinHeap(t2, 3, 3)
+
+iterWorkers(th2, hp2, 4)
