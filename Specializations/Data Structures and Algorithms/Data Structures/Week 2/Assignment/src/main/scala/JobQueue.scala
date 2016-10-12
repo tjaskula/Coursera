@@ -22,9 +22,10 @@ object JobQueue {
     val q = new PriorityQueue[(Long, Long)]()(MinOrder)
 
     val startTimes = Array.ofDim[Long](t)
-    for (i <- 0 until t) {
+    for (i <- 0 until t if i < j) {
       q.enqueue((i, scanner.nextLong))
       startTimes(i) = 0
+      a(i) = (i, 0)
     }
 
     var i = t
