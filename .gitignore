@@ -22,7 +22,7 @@ project/plugins/project/
 .scala_dependencies
 .worksheet
 *.iml
-workspace.xml
+*workspace.xml*
 
 # ENSIME specific
 .ensime_cache/
