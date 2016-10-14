@@ -77,18 +77,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="process_packages.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Starters PA1/network_packet_processing_simulation/process_packages.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="53" column="12" selection-start-line="53" selection-start-column="12" selection-end-line="53" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TreeHeight.sc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/TreeHeight.sc">
           <provider selected="true" editor-type-id="text-editor">
@@ -107,16 +95,6 @@
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="16" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Starters PA1/tree_height/tests/16">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="3" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
-              <folding />
             </state>
           </provider>
         </entry>
