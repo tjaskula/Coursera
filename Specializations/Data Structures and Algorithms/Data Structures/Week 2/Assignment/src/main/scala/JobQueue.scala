@@ -34,7 +34,6 @@ object JobQueue {
       while (!q.isEmpty) {
         val (bestWorker, endTime) = q.dequeue()
         val start = startTimes(bestWorker.toInt)
-        //print(i + ":" + bestWorker + " " + start + "\n")
         a(c) = (bestWorker, start)
         c = c + 1
         if (i < j) {
@@ -44,7 +43,6 @@ object JobQueue {
         }
       }
     }
-    //println(a.toList)
     a.sortWith((t1, t2) => if (t1._2 == t2._2) t1._1 < t2._1 else t1._2 < t2._2).foreach(t => println(t._1 + " " + t._2))
   }
 
