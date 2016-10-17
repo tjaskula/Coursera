@@ -25,7 +25,8 @@ class MinHeap(val a: Array[(Long, Long)], var size: Int, val maxSize: Int) {
       else if (y._1 == x._1) false
       else true
     }
-    else true
+    else if (y._2 > x._2) true
+    else false
   }
 
   def siftDown(i: Int): Unit = {
@@ -44,7 +45,16 @@ class MinHeap(val a: Array[(Long, Long)], var size: Int, val maxSize: Int) {
 
   def siftUp(i: Int): Unit = {
     var indx = i
-    while (indx > 0 && (a(parent(indx))._2 > a(indx)._2 || (a(parent(indx))._2 == a(indx)._2) && a(parent(indx))._1 <= a(indx)._1)) {
+    def isSwap() =
+      if (a(parent(indx))._2 == a(indx)._2) {
+        if (a(parent(indx))._1 > a(indx)._1)
+          true
+        else
+          false
+      }
+      else if (a(parent(indx))._2 > a(indx)._2) true
+      else false
+    while (indx > 0 && isSwap()) {
       swap(parent(indx), indx)
       indx = parent(indx)
     }

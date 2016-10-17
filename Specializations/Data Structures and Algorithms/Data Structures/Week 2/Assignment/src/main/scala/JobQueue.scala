@@ -27,7 +27,7 @@ object JobQueue {
       startTimes(i) = 0
       a(i) = (i, 0)
     }
-
+    println(q.toList)
     var i = t
     var c = 0
     while(i < j) {
@@ -38,6 +38,7 @@ object JobQueue {
         c = c + 1
         if (i < j) {
           q.enqueue((bestWorker, endTime + scanner.nextLong))
+          println(q.toList)
           startTimes(bestWorker.toInt) = endTime
           i = i + 1
         }
