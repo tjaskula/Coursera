@@ -3,27 +3,27 @@ class HashChains(val bucketCount: Int) {
   private val multiplier = 263
   val storage = Array.fill[List[String]](bucketCount)(Nil)
 
-  private def iterChains(s: String, chain: List[String], newChain: List[String]): List[String] =
+  private def delChains(s: String, chain: List[String], newChain: List[String]): List[String] =
     chain match {
       case Nil => newChain
-      case x::xs if x == s => iterChains(s, xs, newChain)
-      case x::xs => iterChains(s, xs, x :: newChain)
+      case x::xs if x == s => delChains(s, xs, newChain)
+      case x::xs => delChains(s, xs, newChain ::: List(x))
     }
 
   def hashFunc(s: String): Int = {
     val hash = 0L
-    (s foldRight hash) ((char, hashed) => (hashed * multiplier + char) % prime) % bucketCount toInt
+    ((s foldRight hash) ((char, hashed) => (hashed * multiplier + char) % prime) % bucketCount).toInt
   }
 
   def add(s: String): HashChains = {
     val i = hashFunc(s)
-    storage(i) = s :: storage(i)
+    if (find(s) == "no") storage(i) = s :: storage(i)
     this
   }
 
   def del(s: String): HashChains = {
     val i = hashFunc(s)
-    storage(i) = iterChains(s, storage(i), Nil)
+    if (find(s) == "yes") storage(i) = delChains(s, storage(i), Nil)
     this
   }
 
@@ -39,7 +39,7 @@ class HashChains(val bucketCount: Int) {
   }
 
   def check(i: Int): String = {
-    (storage(i) foldLeft ("")) ((a, b) => a + " " + b) trim
+    (storage(i) foldLeft "") ((a, b) => a + " " + b).trim
   }
 }
 
@@ -76,7 +76,7 @@ object PhoneBookManager {
     def processIter(i: Int, contacts: HashChains): Unit = {
       if (i == n) Unit
       else {
-        val line = read(i).split(' ')
+        val line = read(i).split("\\s+")
         val operation: (HashChains => HashChains) =
           if (line(0) == "add") add(line(1))
           else if (line(0) == "del") del(line(1))
