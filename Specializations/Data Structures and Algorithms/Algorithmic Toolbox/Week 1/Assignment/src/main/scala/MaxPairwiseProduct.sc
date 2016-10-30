@@ -12,7 +12,7 @@ val l2 = List(7, 5, 14, 2, 8, 8, 10, 1, 2, 3)
 
 val l3 = List(0, 1)
 
-val l4 = List(1)
+val l4 = List(1L)
 
 val l5 = List(100000L, 90000L)
 
@@ -37,7 +37,7 @@ def findTwoMax2(l: List[Long]) : List[Long] = {
   findTwoMaxInner(l, List())
 }
 
-val twoMax = findTwoMax(l5)
+val twoMax = findTwoMax(l4)
 twoMax.product
 
 val r = Random
