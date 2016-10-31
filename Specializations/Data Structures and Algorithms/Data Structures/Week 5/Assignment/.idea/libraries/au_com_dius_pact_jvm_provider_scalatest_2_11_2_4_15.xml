@@ -1,0 +1,60 @@
+<component name="libraryTable">
+  <library name="au.com.dius:pact-jvm-provider-scalatest_2.11:2.4.15" type="repository">
+    <properties maven-id="au.com.dius:pact-jvm-provider-scalatest_2.11:2.4.15" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/au/com/dius/pact-jvm-provider-scalatest_2.11/2.4.15/pact-jvm-provider-scalatest_2.11-2.4.15.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.11.8/scala-library-2.11.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-compiler/2.11.8/scala-compiler-2.11.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-reflect/2.11.8/scala-reflect-2.11.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-xml_2.11/1.0.4/scala-xml_2.11-1.0.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.4/scala-parser-combinators_2.11-1.0.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/au/com/dius/pact-jvm-provider_2.11/2.4.15/pact-jvm-provider_2.11-2.4.15.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/au/com/dius/pact-jvm-model_2.11/2.4.15/pact-jvm-model_2.11-2.4.15.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/json/json/20160212/json-20160212.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-all/2.4.7/groovy-all-2.4.7.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/databinder/unfiltered-netty-server_2.11/0.8.4/unfiltered-netty-server_2.11-0.8.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/databinder/unfiltered-netty_2.11/0.8.4/unfiltered-netty_2.11-0.8.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/databinder/unfiltered_2.11/0.8.4/unfiltered_2.11-0.8.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/databinder/unfiltered-util_2.11/0.8.4/unfiltered-util_2.11-0.8.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.9/commons-codec-1.9.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/netty/netty-codec-http/4.0.24.Final/netty-codec-http-4.0.24.Final.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/netty/netty-codec/4.0.24.Final/netty-codec-4.0.24.Final.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/netty/netty-transport/4.0.24.Final/netty-transport-4.0.24.Final.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/netty/netty-buffer/4.0.24.Final/netty-buffer-4.0.24.Final.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/netty/netty-common/4.0.24.Final/netty-common-4.0.24.Final.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/netty/netty-handler/4.0.24.Final/netty-handler-4.0.24.Final.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/databinder/dispatch/dispatch-core_2.11/0.11.1/dispatch-core_2.11-0.11.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/ning/async-http-client/1.8.8/async-http-client-1.8.8.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/netty/netty/3.9.0.Final/netty-3.9.0.Final.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.2/httpclient-4.5.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.4/httpcore-4.4.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.2/commons-logging-1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/au/com/dius/pact-jvm-logging_2.11/2.4.15/pact-jvm-logging_2.11-2.4.15.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/zafarkhaja/java-semver/0.9.0/java-semver-0.9.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/modules/http-builder/http-builder/0.7.1/http-builder-0.7.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/sf/json-lib/json-lib/2.3/json-lib-2.3-jdk15.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-beanutils/commons-beanutils/1.8.0/commons-beanutils-1.8.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.4/commons-lang-2.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/sf/ezmorph/ezmorph/1.0.6/ezmorph-1.0.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/sourceforge/nekohtml/nekohtml/1.9.16/nekohtml-1.9.16.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/xml-apis/xml-apis/1.3.04/xml-apis-1.3.04.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/au/com/dius/pact-jvm-matchers_2.11/2.4.15/pact-jvm-matchers_2.11-2.4.15.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/io/gatling/jsonpath_2.11/0.6.4/jsonpath_2.11-0.6.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/scalatest/scalatest_2.11/2.2.6/scalatest_2.11-2.2.6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-io-2.5.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/fusesource/jansi/jansi/1.13/jansi-1.13.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/googlecode/java-diff-utils/diffutils/1.3.0/diffutils-1.3.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/reflections/reflections/0.9.10/reflections-0.9.10.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/15.0/guava-15.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/javassist/javassist/3.19.0-GA/javassist-3.19.0-GA.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/annotations/2.0.1/annotations-2.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
