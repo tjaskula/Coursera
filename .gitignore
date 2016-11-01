@@ -23,6 +23,7 @@ project/plugins/project/
 .worksheet
 *.iml
 *workspace.xml*
+.idea/
 
 # ENSIME specific
 .ensime_cache/
