@@ -2,7 +2,7 @@ import java.io._
 import java.util.{StringTokenizer}
 import math._
 
-object ClosestPair {
+object ClosestPair1 {
 
   class Point(var x: Int, var y: Int) {
     override def toString: String = "Point(" + x + ", " + y + ")"
