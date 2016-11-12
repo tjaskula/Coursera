@@ -1,59 +1,54 @@
 import java.io._
 import java.util.StringTokenizer
 
-import scala.annotation.tailrec
-
 object InversionsImp {
 
-  def inv(list : List[Int]) : Long = doInv(list)._1
-
-  def doInv(list : List[Int]) : (Long, List[Int]) =
-    if (list.length <= 1) {
-      (0, list)
-    } else {
-      val (left, right) = list.splitAt(list.length / 2)
-      val (leftCount, leftList) = doInv(left)
-      val (rightCount, rightList) = doInv(right)
-      val (mergeCount, mergeList) = doMerge(leftList, rightList)
-      (leftCount + rightCount + mergeCount, mergeList)
-    }
-
-  def doMerge(left : List[Int], right : List[Int], count : Long = 0) : (Long, List[Int]) =
-    (left, right) match {
-      case (Nil, r) => (count, r)
-      case (l, Nil) => (count, l)
-      case (lhead :: ltail, rhead :: rtail) =>
-        if (lhead <= rhead) {
-          val (lcount, list) = doMerge(ltail, right, count)
-          (count + lcount, lhead :: list)
-        } else {
-          val (rcount, list) = doMerge(left, rtail, count)
-          (count + left.length + rcount, rhead :: list)
-        }
-    }
-
-    def msort(xs: List[Int], totalCount: Long = 0): (Long, List[Int]) = {
-      def merge(left: List[Int], right: List[Int], count : Long = 0): (Long, Stream[Int]) = (left, right) match {
-        case (x :: xs, y :: ys) if x <= y => {
-          val (c, m) = merge(xs, right, count)
-          (count + c, Stream.cons(x, m))
-        }
-        case (x :: xs, y :: ys) if x > y => {
-          val (c, m) = merge(left, ys, count)
-          (c + count + left.length, Stream.cons(y, m))
-        }
-        case _ => if (left.isEmpty) (count, right.toStream) else (count, left.toStream)
-      }
-      val n = xs.length / 2
-      if (n == 0) (totalCount, xs)
+  def merge(a: Array[Int], aux: Array[Int], lo: Int, mid: Int, hi: Int): Long = {
+    def mergeBack(a: Array[Int], aux: Array[Int], k: Int, i: Int, j: Int, inversions: Long): Long = {
+      if (k > hi) inversions
       else {
-        val (ys, zs) = xs splitAt n
-        val (countL, mergedL) = msort(ys)
-        val (countR, mergedR) = msort(zs)
-        val (countMerged, merged) = merge(mergedL, mergedR)
-        ( countMerged + countL + countR, merged.toList)
+        val (newInversions, newI, newJ) =
+          if (i > mid) {
+            a(k) = aux(j)
+            (inversions, i, j + 1)
+          }
+          else if (j > hi) {
+            a(k) = aux(i)
+            (inversions, i + 1, j)
+          }
+          else if (aux(j) < aux(i)) {
+            a(k) = aux(j)
+            (inversions + (mid - i + 1), i, j + 1)
+          }
+          else {
+            a(k) = aux(i)
+            (inversions, i + 1, j)
+          }
+        mergeBack(a, aux, k + 1, newI, newJ, newInversions)
       }
     }
+
+    Array.copy(a, lo, aux, lo, hi - lo + 1)
+    mergeBack(a, aux, lo, lo, mid + 1, 0)
+  }
+
+  def countMerge(a: Array[Int], b: Array[Int], aux: Array[Int], lo: Int, hi: Int, inversions: Long): Long = {
+    if (hi <= lo) 0
+    else {
+      val mid = lo + (hi - lo) / 2
+      val inversionsLeft = countMerge(a, b, aux, lo, mid, 0)
+      val inversionsRight = countMerge(a, b, aux, mid + 1, hi, 0)
+      val inversionsMerge = merge(b, aux, lo, mid, hi)
+      inversionsLeft + inversionsRight + inversionsMerge
+    }
+  }
+
+  def count(a: Array[Int]): Long = {
+    val b = Array.ofDim[Int](a.length)
+    val aux = Array.ofDim[Int](a.length)
+    Array.copy(a, 0, b, 0, a.length)
+    countMerge(a, b, aux, 0, a.length - 1, 0)
+  }
 
   def main(args: Array[String]): Unit = {
 
@@ -73,21 +68,22 @@ object InversionsImp {
   def runInversions() = {
     val scanner: FastScanner = new FastScanner(System.in)
     val n: Int = scanner.nextInt
-    //val a: List[Int] = List[Int]()
-    var i: Int = 0
 
-    /*while (i < n) {
-      scanner.nextInt :: a
-      i = i + 1
-    }*/
+    val a = Array.ofDim[Int](n)
 
-    def buildList(n: Int, l: List[Int]): List[Int] =
+    for (i <- 0 until n) {
+      a(i) = scanner.nextInt
+    }
+
+    println(count(a))
+
+    /*def buildList(n: Int, l: List[Int]): List[Int] =
       if (n == 0) l
       else scanner.nextInt :: buildList(n - 1, l)
 
     val a = buildList(n, Nil)
 
-    println(msort(a)._1)
+    println(msort(a)._1)*/
   }
 
   class FastScanner(val stream: InputStream) {
