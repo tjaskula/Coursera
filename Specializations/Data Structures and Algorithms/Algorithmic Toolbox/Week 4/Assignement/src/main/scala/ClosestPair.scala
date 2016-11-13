@@ -52,6 +52,20 @@ object ClosestPair {
   }
 
   def main(args: Array[String]): Unit = {
+    new Thread(null, new Runnable() {
+      def run() {
+        try
+          runClosest()
+
+        catch {
+          case e: IOException => {
+          }
+        }
+      }
+    }, "1", 1 << 26).start()
+  }
+
+  def runClosest() = {
     val scanner: FastScanner = new FastScanner(System.in)
     val n: Int = scanner.nextInt
 
