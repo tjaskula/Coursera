@@ -3,39 +3,43 @@ import java.util.{StringTokenizer}
 
 object PointsAndSegmentsImp {
 
-  def countSegments(starts: List[Int], ends: List[Int], points: List[Int]): String = {
+  def countSegments(starts: Array[Int], ends: Array[Int], points: Array[Int]): Unit = {
+    val cnt = Array.ofDim[Int](points.length)
 
-    def count(l: List[Int], point: Int, fn: (Int, Int) => Boolean, index: Int = 0): Int = l match {
-      case Nil => index
-      case x :: xs if fn(x, point) => count(xs, point, fn, index + 1)
-      case _ => index
-    }
+    val s = starts.sorted
+    val e = ends.sorted
 
-    def countSegmentsIter(cnt: String, s: List[Int], e: List[Int], p: List[Int]): String = p match {
-      case Nil => cnt
-      case x :: xs => {
-        val cntStarts = count(s, x, (x, point) => x <= point)
-        val cntEnds = count(e, x, (x, point) => x < point)
-        countSegmentsIter(cnt + (cntStarts - cntEnds) + " ", s, e, xs)
+    for (i <- points.indices) {
+      var index1 = 0
+      while (index1 < s.length && s(index1) <= points(i)) {
+        index1 += 1
       }
+
+      var index2 = 0
+      while (index2 < e.length && e(index2) < points(i)) {
+        index2 += 1
+      }
+
+      //cnt(i) = index1 - index2
+      print((index1 - index2).toString + " ")
     }
 
-    countSegmentsIter("", starts.sorted, ends.sorted, points).trim()
+    //cnt.mkString(" ")
   }
 
   def main(args: Array[String]): Unit = {
 
-    new Thread(null, new Runnable() {
-      def run() {
-        try
+    //new Thread(null, new Runnable() {
+    //  def run() {
+    //    try
           pointsSegments()
 
-        catch {
-          case e: IOException => {
-          }
-        }
-      }
-    }, "1", 1 << 26).start()
+    //    catch {
+    //      case e: IOException => {
+    //      }
+    //    }
+    //  }
+    //}, "1", 1 << 26).start()
   }
 
   def pointsSegments() = {
@@ -43,18 +47,36 @@ object PointsAndSegmentsImp {
     val n: Int = scanner.nextInt
     val m: Int = scanner.nextInt
 
-    def buildStartsEnds(n: Int, l: (List[Int], List[Int])): (List[Int], List[Int]) =
+    /*def buildStartsEnds(n: Int, l: (List[Int], List[Int])): (List[Int], List[Int]) =
       if (n == 0) l
       else buildStartsEnds(n - 1, (scanner.nextInt :: l._1, scanner.nextInt :: l._2))
 
     def buildPoints(m: Int, l: List[Int]): List[Int] =
       if (m == 0) l
-      else scanner.nextInt :: buildPoints(m - 1, l)
+      else scanner.nextInt :: buildPoints(m - 1, l)*/
 
-    val (starts, ends) = buildStartsEnds(n, (Nil, Nil))
-    val points = buildPoints(m, Nil)
+    //val (starts, ends) = buildStartsEnds(n, (Nil, Nil))
+    //val points = buildPoints(m, Nil)
+    val starts: Array[Int] = new Array[Int](n)
+    val ends: Array[Int] = new Array[Int](n)
+    val points: Array[Int] = new Array[Int](m)
+    var i: Int = 0
+    while (i < n)
+    {
+      starts(i) = scanner.nextInt
+      ends(i) = scanner.nextInt
+      i += 1
+    }
+    i = 0
+    while (i < m)
+    {
+      points(i) = scanner.nextInt
+      i += 1
+    }
 
-    println(countSegments(starts, ends, points))
+    countSegments(starts, ends, points)
+
+    //println(countSegments(starts, ends, points))
   }
 
   class FastScanner(val stream: InputStream) {
