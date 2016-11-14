@@ -3,8 +3,25 @@ import java.util.{StringTokenizer}
 
 object PointsAndSegmentsImp {
 
-  def countSegments(starts: Array[Int], ends: Array[Int], points: Array[Int]): Unit = {
+  def countSegments(starts: Array[Int], ends: Array[Int], points: Array[Int]): String = {
+
     val cnt = Array.ofDim[Int](points.length)
+
+    /*val s = starts.sorted
+    val e = ends.sorted
+
+    for (i <- points.indices) {
+      var index1 = 0
+      s.indices.takeWhile(_ => s(index1) <= points(i)).foreach(_ => index1 += 1)
+
+      var index2 = 0
+      e.indices.takeWhile(_ => e(index2) < points(i)).foreach(_ => index2 += 1)
+
+
+      cnt(i) = index1 - index2
+    }
+
+    cnt.mkString(" ")*/
 
     val s = starts.sorted
     val e = ends.sorted
@@ -20,11 +37,9 @@ object PointsAndSegmentsImp {
         index2 += 1
       }
 
-      //cnt(i) = index1 - index2
-      print((index1 - index2).toString + " ")
+      cnt(i) = index1 - index2
     }
-
-    //cnt.mkString(" ")
+    cnt.mkString(" ")
   }
 
   def main(args: Array[String]): Unit = {
@@ -74,9 +89,9 @@ object PointsAndSegmentsImp {
       i += 1
     }
 
-    countSegments(starts, ends, points)
+    //countSegments(starts, ends, points)
 
-    //println(countSegments(starts, ends, points))
+    println(countSegments(starts, ends, points))
   }
 
   class FastScanner(val stream: InputStream) {
