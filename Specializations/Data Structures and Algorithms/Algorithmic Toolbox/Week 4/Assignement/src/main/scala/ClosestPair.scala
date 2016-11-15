@@ -22,30 +22,24 @@ object ClosestPair {
   }
 
   def closestPairs(points: List[Point]): Double = {
-    def closestPairsIter(yP: List[Point]): Double = {
-      if (yP.length <= 3)
-        closestPairsBrutForce(yP)
+    def closestPairsIter(xP: List[Point], yP: List[Point]): Double = {
+      if (xP.length <= 3)
+        closestPairsBrutForce(xP)
       else {
-        val mid = yP.length / 2
-        val xm = yP(mid)
-        val (xL, xR) = yP splitAt mid
-        val dL = closestPairsIter(xL)
-        val dR = closestPairsIter(xR)
+        val mid = xP.length / 2
+        val xm = xP(mid)
+        val (xL, xR) = xP splitAt mid
+        val (yL, yR) = yP partition (p => p.x <= xm.x)
+        val dL = closestPairsIter(xL, yL)
+        val dR = closestPairsIter(xR, yR)
         val dmin = min(dL, dR)
 
-        var m: Int = 0
-        val yS = Array.ofDim[Point](yP.length)
-        for (i <- yP.indices) {
-          if (abs(yP(i).x - xm.x) < dmin) {
-            yS(m) = yP(i)
-            m = m + 1
-          }
-        }
+        val yS = yP filter (p => abs(xm.x - p.x) < dmin)
 
         var closest = dmin
-        for (i <- 0 until m) {
+        for (i <- yS.indices) {
           var k = i + 1
-          while (k < m && (yS(k).y - yS(i).y < dmin)) {
+          while (k < yS.length && (yS(k).y - yS(i).y) < dmin) {
             val distance = getDistance(yS(k), yS(i))
             if (distance < closest)
               closest = distance
@@ -56,7 +50,7 @@ object ClosestPair {
         closest
       }
     }
-    val res = closestPairsIter(points.sortWith((t1, t2) => t1.y < t2.y))
+    val res = closestPairsIter(points.sortWith((t1, t2) => t1.x < t2.x), points.sortWith((t1, t2) => t1.y < t2.y))
     BigDecimal(res).setScale(6, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
