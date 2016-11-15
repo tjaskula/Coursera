@@ -11,9 +11,9 @@ object ClosestPair {
   def getDistance(p1: Point, p2: Point): Double =
     sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2))
 
-  def closestPairsBrutForce(subPoints: List[Point]): Double = {
+  def closestPairsBrutForce(subPoints: Array[Point]): Double = {
     var minDistance = Double.PositiveInfinity
-    for (i <- 0 until subPoints.length; j <- i + 1 until subPoints.length) {
+    for (i <- subPoints.indices; j <- i + 1 until subPoints.length) {
       val distance = getDistance(subPoints(i), subPoints(j))
       if (distance < minDistance)
         minDistance = distance
@@ -21,8 +21,8 @@ object ClosestPair {
     minDistance
   }
 
-  def closestPairs(points: List[Point]): Double = {
-    def closestPairsIter(xP: List[Point], yP: List[Point]): Double = {
+  def closestPairs(points: Array[Point]): Double = {
+    def closestPairsIter(xP: Array[Point], yP: Array[Point]): Double = {
       if (xP.length <= 3)
         closestPairsBrutForce(xP)
       else {
@@ -72,11 +72,17 @@ object ClosestPair {
     val scanner: FastScanner = new FastScanner(System.in)
     val n: Int = scanner.nextInt
 
-    def buildStartsEnds(n: Int, l: List[Point]): List[Point] =
-      if (n == 0) l
-      else buildStartsEnds(n - 1, new Point(scanner.nextInt, scanner.nextInt) :: l)
+    //def buildStartsEnds(n: Int, l: List[Point]): List[Point] =
+    //  if (n == 0) l
+    //  else buildStartsEnds(n - 1, new Point(scanner.nextInt, scanner.nextInt) :: l)
 
-    val points = buildStartsEnds(n, Nil)
+    //val points = buildStartsEnds(n, Nil)
+
+    val points = Array.ofDim[Point](n)
+
+    for (i <- 0 until n) {
+      points(i) = new Point(scanner.nextInt, scanner.nextInt)
+    }
 
     println(closestPairs(points))
   }
