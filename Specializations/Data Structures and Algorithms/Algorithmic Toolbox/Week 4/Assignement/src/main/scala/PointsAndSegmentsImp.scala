@@ -42,6 +42,26 @@ object PointsAndSegmentsImp {
     cnt.mkString(" ")
   }
 
+  def countSegmentsFold(starts: Array[Int], ends: Array[Int], points: Array[Int]): String = {
+    val s = starts.sorted
+    val e = ends.sorted
+
+    def getDeltas(point: Int, cnt: List[Int]): List[Int] = {
+      var index1 = 0
+      while (index1 < s.length && s(index1) <= point) {
+        index1 += 1
+      }
+
+      var index2 = 0
+      while (index2 < e.length && e(index2) < point) {
+        index2 += 1
+      }
+      val delta = index1 - index2
+      delta :: cnt
+    }
+    points.foldRight(Nil: List[Int])(getDeltas).mkString(" ")
+  }
+
   def main(args: Array[String]): Unit = {
 
     //new Thread(null, new Runnable() {
@@ -91,7 +111,7 @@ object PointsAndSegmentsImp {
 
     //countSegments(starts, ends, points)
 
-    println(countSegments(starts, ends, points))
+    println(countSegmentsFold(starts, ends, points))
   }
 
   class FastScanner(val stream: InputStream) {
