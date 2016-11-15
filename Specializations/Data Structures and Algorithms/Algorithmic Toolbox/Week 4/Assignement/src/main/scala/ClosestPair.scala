@@ -21,33 +21,36 @@ object ClosestPair {
     minDistance
   }
 
-  def stripClosest(strip: List[Point], minDistance: Double) = {
-    var min = minDistance
-
-    for (i <- 0 until strip.length; j <- i + 1 until strip.length if (strip(j).y - strip(i).y) < min) {
-      val distance = getDistance(strip(i), strip(j))
-      if (distance < min)
-        min = getDistance(strip(i), strip(j))
-    }
-    min
-  }
-
   def closestPairs(points: List[Point]): Double = {
-    def closestPairsIter(subPointsX: List[Point]): Double = {
-      if (subPointsX.length <= 3)
-        closestPairsBrutForce(subPointsX)
+    def closestPairsIter(xP: List[Point], yP: List[Point]): Double = {
+      if (xP.length <= 3)
+        closestPairsBrutForce(xP)
       else {
-        val mid = subPointsX.length / 2
-        val midPoint = subPointsX(mid)
-        val (subPointsXL, subPointsXR) = subPointsX splitAt mid
-        val sigmaL = closestPairsIter(subPointsXL)
-        val sigmaR = closestPairsIter(subPointsXR)
-        val sigma = min(sigmaL, sigmaR)
-        val candidates = subPointsX filter (p => abs(p.x - midPoint.x) < sigma)
-        min(sigma, stripClosest(candidates, sigma))
+        val mid = xP.length / 2
+        val xm = xP(mid)
+        val (xL, xR) = xP splitAt mid
+        val (yL, yR) = yP partition (p => p.x <= xm.x)
+        val dL = closestPairsIter(xL, yL)
+        val dR = closestPairsIter(xR, yR)
+        val dmin = min(dL, dR)
+
+        val yS = yP filter (p => abs(xm.x - p.x) < dmin)
+
+        var closest = dmin
+        for (i <- yS.indices) {
+          var k = i + 1
+          while (k < yS.length && (yS(k).y - yS(i).y) < dmin) {
+            val distance = getDistance(yS(k), yS(i))
+            if (distance < closest)
+              closest = distance
+            k = k + 1
+          }
+        }
+
+        closest
       }
     }
-    val res = closestPairsIter(points.sortWith((t1, t2) => t1.x < t2.x))
+    val res = closestPairsIter(points.sortWith((t1, t2) => t1.x < t2.x), points.sortWith((t1, t2) => t1.y < t2.y))
     BigDecimal(res).setScale(6, BigDecimal.RoundingMode.HALF_UP).toDouble
   }
 
