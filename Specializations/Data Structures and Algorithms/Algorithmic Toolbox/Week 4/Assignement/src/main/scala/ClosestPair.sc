@@ -21,7 +21,7 @@ def closestPairsBrutForce(subPoints: List[Point]): Double = {
 def stripClosest(strip: List[Point], minDistance: Double) = {
   var min = minDistance
 
-  for (i <- 0 until strip.length; j <- i + 1 until strip.length if (strip(j).y - strip(i).y) < min) {
+  for (i <- strip.indices; j <- i + 1 until strip.length if (strip(j).y - strip(i).y) < min) {
     val distance = getDistance(strip(i), strip(j))
     if (distance < min)
       min = getDistance(strip(i), strip(j))
