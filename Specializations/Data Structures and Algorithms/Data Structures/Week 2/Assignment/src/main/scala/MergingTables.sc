@@ -1,10 +1,19 @@
-class Table(numberOfRows: Int) {
-  val parent: Table = this
-  val rank: Int = 0
+trait Table {
+  def getParent: Table
+}
 
-  def getParent(): Table = parent
+case class Node(numberOfRows: Int, rank: Int, parent: Table) extends Table {
+  override def getParent: Table = parent
+}
+
+case class Root(numberOfRows: Int, rank: Int) extends Table{
+  override def getParent: Table = this
 }
 
 def findRoot(table: Table): Table =
   if (table != table.getParent()) findRoot(table.getParent())
   else table
+
+def mergeTable(source: Table, destination: Table): Table = {
+
+}
