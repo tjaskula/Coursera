@@ -98,7 +98,7 @@ object MergingTables {
     val writer = new PrintWriter(stream)
 
     def printf(format: String, args: Any*) {
-      writer.print(String.format(Locale.ENGLISH, format, args))
+      writer.println(args.mkString)
     }
   }
 }
