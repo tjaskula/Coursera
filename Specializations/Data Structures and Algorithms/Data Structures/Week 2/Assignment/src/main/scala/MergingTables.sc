@@ -64,7 +64,6 @@ mergeTable(r1(4), r1(3))
 mergeTable(r1(4), r1(2))
 
 val nbRows2 = List(10, 0, 5, 0, 3, 3)
-
 val r2 = initiateRoots(nbRows2, Array.empty[Table])
 
 mergeTable(r2(5), r2(5))
