@@ -88,9 +88,7 @@ object MergingTables {
     }
 
     def nextInt: Int = next.toInt
-
     def nextDouble: Double = next.toDouble
-
     def nextLong: Long = next.toLong
   }
 
