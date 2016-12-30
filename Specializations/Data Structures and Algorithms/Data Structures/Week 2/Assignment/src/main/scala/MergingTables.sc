@@ -46,8 +46,6 @@ def mergeTable(destination: Table, source: Table): Unit = {
   println("Destination: " + realDestination)
 }
 
-val nbRows1 = List(1, 1, 1, 1, 1)
-
 def initiateRoots(nbRows: List[Int], acc: Array[Table]) : Array[Table] = nbRows match {
   case List() => acc
   case x :: xs =>
@@ -55,6 +53,7 @@ def initiateRoots(nbRows: List[Int], acc: Array[Table]) : Array[Table] = nbRows 
     initiateRoots(xs, acc :+ new Table(x))
 }
 
+val nbRows1 = List(1, 1, 1, 1, 1)
 val r1 = initiateRoots(nbRows1, Array.empty[Table])
 
 mergeTable(r1(2), r1(4))
