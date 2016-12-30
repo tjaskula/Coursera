@@ -11,10 +11,9 @@ def precomputeHashes(text: String, pattern: String): Array[Long] = {
   val pLength = pattern.length()
   val lastHash = hashFunc(text.substring(tLength - pLength))
   //println("last " + lastHash)
-  val y = ((1 to pLength) foldLeft 1L) ((acc, _) => (acc * multiplier) % prime)
-  def subtraction(cStart: Char, cEnd: Char): Long = cStart - y * cEnd
-  ((tLength - pLength - 1 to 0 by -1) foldLeft Array(lastHash)) ((h, i) => (((h.head * multiplier) % prime +
-    (subtraction(text.charAt(i), text.charAt(i + pLength)) % prime + prime) % prime) % prime) +: h)
+  val y = ((0 until pLength) foldLeft 1L) ((acc, _) => (acc * multiplier) % prime)
+  ((tLength - pLength - 1 to 0 by -1) foldLeft Array(lastHash)) ((h, i) => ((h.head * multiplier) +
+    text.charAt(i) - (y * text.charAt(i + pLength)) % prime) +: h)
 }
 
 def areEqual(substr: String, pattern: String): Boolean = {
@@ -31,12 +30,13 @@ def areEqual(substr: String, pattern: String): Boolean = {
 def run(text: String, pattern: String): String = {
   val tLength = text.length()
   val pLength = pattern.length()
+  val patternHash = hashFunc(pattern)
   val hashes = precomputeHashes(text, pattern)
   //println(hashes.mkString("|"))
   ((0 to tLength - pLength) foldLeft "") ((acc, i) => {
     val substr = text.substring(i, i + pLength)
     //println("Comparing - " + hashFunc(substr) + " | " + hashes(i))
-    if (hashFunc(substr) != hashes(i)) acc
+    if (patternHash != hashes(i)) acc
     else if (areEqual(substr, pattern)) acc + " " + i
     else acc
   })

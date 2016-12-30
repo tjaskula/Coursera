@@ -1,6 +1,6 @@
 object HashSubstring {
   val prime = (math.pow(10, 9) + 7).toLong
-  val multiplier = 263
+  val multiplier = 1
 
   def hashFunc(s: String): Long = {
     val hash = 0L
@@ -11,10 +11,10 @@ object HashSubstring {
     val tLength = text.length()
     val pLength = pattern.length()
     val lastHash = hashFunc(text.substring(tLength - pLength))
-    val y = ((1 to pLength) foldLeft 1L) ((acc, _) => (acc * multiplier) % prime)
-    def subtraction(cStart: Char, cEnd: Char): Long = cStart - y * cEnd
-    ((tLength - pLength - 1 to 0 by -1) foldLeft Array(lastHash)) ((h, i) => (((h.head * multiplier) % prime +
-      (subtraction(text.charAt(i), text.charAt(i + pLength)) % prime + prime) % prime) % prime) +: h)
+    //println("last " + lastHash)
+    val y = ((0 until pLength) foldLeft 1L) ((acc, _) => (acc * multiplier) % prime)
+    ((tLength - pLength - 1 to 0 by -1) foldLeft Array(lastHash)) ((h, i) => ((h.head * multiplier) +
+      text.charAt(i) - (y * text.charAt(i + pLength)) % prime) +: h)
   }
 
   def areEqual(substr: String, pattern: String): Boolean = {
@@ -31,10 +31,13 @@ object HashSubstring {
   def run(text: String, pattern: String): String = {
     val tLength = text.length()
     val pLength = pattern.length()
+    val patternHash = hashFunc(pattern)
     val hashes = precomputeHashes(text, pattern)
+    //println(hashes.mkString("|"))
     ((0 to tLength - pLength) foldLeft "") ((acc, i) => {
       val substr = text.substring(i, i + pLength)
-      if (hashFunc(substr) != hashes(i)) acc
+      //println("Comparing - " + hashFunc(substr) + " | " + hashes(i))
+      if (patternHash != hashes(i)) acc
       else if (areEqual(substr, pattern)) acc + " " + i
       else acc
     })
