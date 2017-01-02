@@ -11,34 +11,29 @@ object HashSubstring {
     val tLength = text.length()
     val pLength = pattern.length()
     val lastHash = hashFunc(text.substring(tLength - pLength))
-    //println("last " + lastHash)
     val y = ((0 until pLength) foldLeft 1L) ((acc, _) => (acc * multiplier) % prime)
     ((tLength - pLength - 1 to 0 by -1) foldLeft Array(lastHash)) ((h, i) => ((h.head * multiplier) +
       text.charAt(i) - (y * text.charAt(i + pLength)) % prime) +: h)
   }
 
-  def areEqual(substr: String, pattern: String): Boolean = {
-    def toListOfChars(s: String): List[Char] =
-      (s foldRight List.empty[Char]) ((next, acc) => next :: acc)
-
-    def areEqualIter(xs: List[Char], ys: List[Char]): Boolean = xs match {
-      case Nil => true
-      case x::zs => if ( x != ys.head) false else areEqualIter(zs, ys.tail)
+  def areEqual(text: String, pattern: String, index: Int): Boolean = {
+    def areEqualIter(i: Int): Boolean = {
+      if (i >= pattern.length()) true
+      else {
+        if (pattern.charAt(i) != text.charAt(index + i)) false else areEqualIter(i + 1)
+      }
     }
-    areEqualIter(toListOfChars(substr), toListOfChars(pattern))
+    areEqualIter(0)
   }
 
-  def run(text: String, pattern: String): String = {
+  def run(text: String, pattern: String): StringBuilder = {
     val tLength = text.length()
     val pLength = pattern.length()
     val patternHash = hashFunc(pattern)
     val hashes = precomputeHashes(text, pattern)
-    //println(hashes.mkString("|"))
-    ((0 to tLength - pLength) foldLeft "") ((acc, i) => {
-      val substr = text.substring(i, i + pLength)
-      //println("Comparing - " + hashFunc(substr) + " | " + hashes(i))
+    ((0 to tLength - pLength) foldLeft new StringBuilder()) ((acc, i) => {
       if (patternHash != hashes(i)) acc
-      else if (areEqual(substr, pattern)) acc + " " + i
+      else if (areEqual(text, pattern , i)) acc.append(s"$i ")
       else acc
     })
   }
