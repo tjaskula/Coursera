@@ -27,7 +27,7 @@ object HashSubstring2 {
     hashes(tLength - pLength) = lastHash
     var i = tLength - pLength - 1
     while (i >= 0) {
-      hashes(i) = (hashes(i + 1) * multiplier + text.charAt(i) + prime) % prime - (y * text.charAt(i + pLength)) % prime
+      hashes(i) = (hashes(i + 1) * multiplier) + text.charAt(i) - (y * text.charAt(i + pLength)) % prime
       i = i - 1
     }
     hashes
