@@ -40,17 +40,13 @@ object HashSubstring2 {
     val hashes = precomputeHashes(text, pattern)
     var i = 0
     while (i <= tLength - pLength) {
-      //println("Pattern : " + patternHash)
-      //println("Hash : " + hashes(i))
       if (patternHash == hashes(i)) {
-        //val substr = text.substring(i, i + pLength)
         var isMatch = true
         var j = 0
         while (j < pLength && isMatch) {
           isMatch = text.charAt(i + j) == pattern.charAt(j)
           j = j + 1
         }
-        //if (substr == pattern) sb.append(s"$i ")
         if (isMatch) sb.append(s"$i ")
       }
       i = i + 1

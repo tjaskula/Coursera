@@ -2,46 +2,57 @@ val prime = (math.pow(10, 9) + 7).toLong
 val multiplier = 1
 
 def hashFunc(s: String): Long = {
-  val hash = 0L
-  (s foldRight hash) ((char, hashed) => (hashed * multiplier + char) % prime)
+  var hash = 0L
+  var i = s.length() - 1
+  while (i >= 0) {
+    hash = (hash * multiplier + s.charAt(i)) % prime
+    i = i - 1
+  }
+  hash
 }
 
 def precomputeHashes(text: String, pattern: String): Array[Long] = {
   val tLength = text.length()
   val pLength = pattern.length()
-  val lastHash = hashFunc(text.substring(tLength - pLength))
-  //println("last " + lastHash)
-  val y = ((0 until pLength) foldLeft 1L) ((acc, _) => (acc * multiplier) % prime)
-  ((tLength - pLength - 1 to 0 by -1) foldLeft Array(lastHash)) ((h, i) => ((h.head * multiplier) +
-    text.charAt(i) - (y * text.charAt(i + pLength)) % prime) +: h)
-}
-
-def areEqual(substr: String, pattern: String): Boolean = {
-  def toListOfChars(s: String): List[Char] =
-    (s foldRight List.empty[Char]) ((next, acc) => next :: acc)
-
-  def areEqualIter(xs: List[Char], ys: List[Char]): Boolean = xs match {
-    case Nil => true
-    case x::zs => if ( x != ys.head) false else areEqualIter(zs, ys.tail)
+  var y = 1L
+  var c = 0
+  while (c < pLength) {
+    y = (y * multiplier) % prime
+    c = c + 1
   }
-  areEqualIter(toListOfChars(substr), toListOfChars(pattern))
+
+  val hashes = Array.ofDim[Long](tLength - pLength + 1)
+  val lastHash = hashFunc(text.substring(tLength - pLength))
+  hashes(tLength - pLength) = lastHash
+  var i = tLength - pLength - 1
+  while (i >= 0) {
+    hashes(i) = (hashes(i + 1) * multiplier) + text.charAt(i) - (y * text.charAt(i + pLength)) % prime
+    i = i - 1
+  }
+  hashes
 }
 
-def run(text: String, pattern: String): String = {
+def run(text: String, pattern: String, sb: StringBuilder): StringBuilder = {
   val tLength = text.length()
   val pLength = pattern.length()
   val patternHash = hashFunc(pattern)
   val hashes = precomputeHashes(text, pattern)
-  //println(hashes.mkString("|"))
-  ((0 to tLength - pLength) foldLeft "") ((acc, i) => {
-    val substr = text.substring(i, i + pLength)
-    //println("Comparing - " + hashFunc(substr) + " | " + hashes(i))
-    if (patternHash != hashes(i)) acc
-    else if (areEqual(substr, pattern)) acc + " " + i
-    else acc
-  })
+  var i = 0
+  while (i <= tLength - pLength) {
+    if (patternHash == hashes(i)) {
+      var isMatch = true
+      var j = 0
+      while (j < pLength && isMatch) {
+        isMatch = text.charAt(i + j) == pattern.charAt(j)
+        j = j + 1
+      }
+      if (isMatch) sb.append(s"$i ")
+    }
+    i = i + 1
+  }
+  sb
 }
 
-run("abacaba", "aba")
-run("testTesttesT", "Test")
-run("baaaaaaa", "aaaaa")
+run("abacaba", "aba", new StringBuilder()).toString()
+run("testTesttesT", "Test", new StringBuilder()).toString()
+run("baaaaaaa", "aaaaa", new StringBuilder()).toString()
