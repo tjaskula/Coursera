@@ -1,19 +1,23 @@
 object SplayTree {
-  abstract class Tree()
+  abstract class Tree
   case class Node(key: Int, sum: Long, left: Tree, right: Tree, parent: Tree) extends Tree
-  case class Empty() extends Tree
+  case object Empty extends Tree
 
-  def calculateNodeSum(t: Tree): Tree = t match {
-    case Empty() => t
-    case Node(k, s, l, r, p) =>
-      val sumLeft = l match {case Empty() => 0; case Node(_, sl, _, _, _) => sl}
-      val sumRight = r match {case Empty() => 0; case Node(_, sr, _, _, _) => sr}
+  private def calculateNodeSum(t: Tree): Tree = t match {
+    case Empty => t
+    case Node(k, _, l, r, p) =>
+      val sumLeft = l match { case Empty => 0; case Node(_, sl, _, _, _) => sl }
+      val sumRight = r match { case Empty => 0; case Node(_, sr, _, _, _) => sr }
       Node(k, k + sumLeft + sumRight, l, r, p)
   }
 
-//  def update(t: Tree): Tree = {
-//
-//  }
+  def update(t: Tree): Tree = t match {
+    case Empty => t
+    case Node(k, s, l, r, p) => {
+      val sum = calculateNodeSum(t)
+
+    }
+  }
 
 //  def splay(t: Tree): Tree = {
 //    def walkPerents(p: Tree): Tree = p match {
