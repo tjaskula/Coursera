@@ -4,6 +4,28 @@ import java.util.StringTokenizer
 
 object RopeProblem {
 
+  def print(n: Vertex, buf: StringBuilder, stack: util.Stack[Vertex]): StringBuilder = {
+    var node = n
+    while (node != null) {
+      stack.push(node)
+      node = node.left
+    }
+    // traverse the tree
+    while (stack.size > 0) {
+      // visit the top node
+      node = stack.pop
+      buf.append(node.value)
+      if (node.right != null) {
+        node = node.right
+        // the next node to be visited is the leftmost
+        while (node != null) {
+          stack.push(node)
+          node = node.left
+        }
+      }
+    }
+    buf
+  }
 
   def create(string: String): Vertex = {
     var root: Vertex = null
