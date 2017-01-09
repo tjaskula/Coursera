@@ -1,8 +1,60 @@
-import java.io.{BufferedReader, IOException, InputStream, InputStreamReader}
+import java.io._
 import java.util
 import java.util.StringTokenizer
 
 object RopeProblem {
+
+  class Rope(val s: String) {
+    root = create(s)
+    var root: Vertex = null
+
+    def process(i: Int, j: Int, k: Int) {
+      val leftMid = split(root, i)
+      val midRight = split(leftMid.right, j - i + 2)
+      val mid = midRight.left
+      root = merge(leftMid.left, midRight.right)
+      val leftRight = split(root, k + 1)
+      root = merge(leftRight.left, mid)
+      root = merge(root, leftRight.right)
+    }
+
+    def result: String = {
+      val buf = new StringBuilder
+      print(root, buf, new util.Stack[Vertex])
+      buf.toString
+    }
+
+    override def toString: String = {
+      val stringBuilder = new StringBuilder
+      print(root, stringBuilder, new util.Stack[Vertex]).toString
+    }
+  }
+
+  @throws[IOException]
+  def main(args: Array[String]) {
+    run()
+  }
+
+  @throws[IOException]
+  def run() {
+    val in = new RopeProblemJ#FastScanner
+    val out = new PrintWriter(System.out)
+    val rope = new RopeProblemJ.Rope(in.next)
+    var q = in.nextInt
+    while (q > 0) {
+      {
+        val i = in.nextInt
+        val j = in.nextInt
+        val k = in.nextInt
+        rope.process(i + 1, j + 1, k)
+      }
+      {
+        q -= 1; q + 1
+      }
+    }
+    out.println(rope.result)
+    out.close()
+  }
 
   def print(n: Vertex, buf: StringBuilder, stack: util.Stack[Vertex]): StringBuilder = {
     var node = n
