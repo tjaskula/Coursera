@@ -37,9 +37,9 @@ object RopeProblem {
 
   @throws[IOException]
   def run() {
-    val in = new RopeProblemJ#FastScanner
+    val in = new FastScanner(System.in)
     val out = new PrintWriter(System.out)
-    val rope = new RopeProblemJ.Rope(in.next)
+    val rope = new Rope(in.next)
     var q = in.nextInt
     while (q > 0) {
       {
