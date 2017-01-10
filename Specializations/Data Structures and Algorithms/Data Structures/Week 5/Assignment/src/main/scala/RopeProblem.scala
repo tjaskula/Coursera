@@ -5,8 +5,7 @@ import java.util.StringTokenizer
 object RopeProblem {
 
   class Rope(val s: String) {
-    root = create(s)
-    var root: Vertex = null
+    var root = create(s)
 
     def process(i: Int, j: Int, k: Int) {
       val leftMid = split(root, i)
@@ -218,14 +217,17 @@ object RopeProblem {
     new VertexPair(found, root)
   }
 
-  def split(root: Vertex, key: Int): VertexPair = {
-    var newRoot = root
-    val result = new VertexPair()
-    val findAndRoot = find(newRoot, key)
-    newRoot = findAndRoot.right
-    result.right = findAndRoot.left
+  def split(r: Vertex, key: Int): VertexPair = {
+    var root = r
+    if (root == null) return new VertexPair(null, null)
+    val result = new VertexPair
+    val findAndRoot = find(root, key)
+    if (findAndRoot != null) {
+      root = findAndRoot.right
+      result.right = findAndRoot.left
+    }
     if (result.right == null) {
-      result.left = newRoot
+      result.left = root
       return result
     }
     result.right = splay(result.right)
