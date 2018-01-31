@@ -21,4 +21,10 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
     findMin(insert(m, h)) == m
   }
 
+  property("getting smallest out of two elements") = forAll { (a: Int, b: Int) =>
+    val aIsSmaller = a < b
+    val heap = insert(b, insert(a, empty))
+    if (aIsSmaller) findMin(heap) == a else findMin(heap) == b
+  }
+
 }
