@@ -17,7 +17,7 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
   // example property
   property("empty") = forAll { a: Int =>
     val h = empty
-    isEmpty(h) == true
+    isEmpty(h)
   }
 
   lazy val genHeap: Gen[H] = for {
