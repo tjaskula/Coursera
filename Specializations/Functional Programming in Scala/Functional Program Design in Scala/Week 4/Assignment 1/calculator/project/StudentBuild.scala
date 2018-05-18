@@ -1,1 +1,0 @@
-object StudentBuild extends StudentBuildLike
