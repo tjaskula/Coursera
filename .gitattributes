@@ -9,3 +9,5 @@ MaxPairwiseProduct.sc filter=git-crypt diff=git-crypt
 *Imp.hs filter=git-crypt diff=git-crypt
 Huffman.scala filter=git-crypt diff=git-crypt
 Anagrams.scala filter=git-crypt diff=git-crypt
+
+TweetLength.scala filter=git-crypt diff=git-crypt
