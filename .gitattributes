@@ -11,3 +11,4 @@ Huffman.scala filter=git-crypt diff=git-crypt
 Anagrams.scala filter=git-crypt diff=git-crypt
 
 TweetLength.scala filter=git-crypt diff=git-crypt
+Polynomial.scala filter=git-crypt diff=git-crypt
