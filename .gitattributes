@@ -9,6 +9,11 @@ MaxPairwiseProduct.sc filter=git-crypt diff=git-crypt
 *Imp.hs filter=git-crypt diff=git-crypt
 Huffman.scala filter=git-crypt diff=git-crypt
 Anagrams.scala filter=git-crypt diff=git-crypt
+StringParserTerrain.scala filter=git-crypt diff=git-crypt
+GameDef.scala filter=git-crypt diff=git-crypt
+Solver.scala filter=git-crypt diff=git-crypt
+Bloxorz.scala filter=git-crypt diff=git-crypt
+BloxorzSuite.scala filter=git-crypt diff=git-crypt
 
 TweetLength.scala filter=git-crypt diff=git-crypt
 Polynomial.scala filter=git-crypt diff=git-crypt
