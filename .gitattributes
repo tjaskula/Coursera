@@ -14,7 +14,7 @@ GameDef.scala filter=git-crypt diff=git-crypt
 Solver.scala filter=git-crypt diff=git-crypt
 Bloxorz.scala filter=git-crypt diff=git-crypt
 BloxorzSuite.scala filter=git-crypt diff=git-crypt
-
+QuickCheck.scala filter=git-crypt diff=git-crypt
 TweetLength.scala filter=git-crypt diff=git-crypt
 Polynomial.scala filter=git-crypt diff=git-crypt
 Calculator.scala filter=git-crypt diff=git-crypt
