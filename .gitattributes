@@ -18,3 +18,4 @@ QuickCheck.scala filter=git-crypt diff=git-crypt
 TweetLength.scala filter=git-crypt diff=git-crypt
 Polynomial.scala filter=git-crypt diff=git-crypt
 Calculator.scala filter=git-crypt diff=git-crypt
+package.scala filter=git-crypt diff=git-crypt
