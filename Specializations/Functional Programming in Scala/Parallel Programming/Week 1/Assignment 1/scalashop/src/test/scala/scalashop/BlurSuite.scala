@@ -88,6 +88,4 @@ class BlurSuite extends FunSuite {
     check(2, 2, 5)
     check(3, 2, 6)
   }
-
-
 }
