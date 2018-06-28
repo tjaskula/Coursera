@@ -20,3 +20,4 @@ Polynomial.scala filter=git-crypt diff=git-crypt
 Calculator.scala filter=git-crypt diff=git-crypt
 package.scala filter=git-crypt diff=git-crypt
 VerticalBoxBlur.scala filter=git-crypt diff=git-crypt
+HorizontalBoxBlur.scala filter=git-crypt diff=git-crypt
