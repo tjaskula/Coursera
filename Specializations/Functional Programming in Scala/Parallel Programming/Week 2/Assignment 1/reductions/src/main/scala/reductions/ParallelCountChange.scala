@@ -45,16 +45,11 @@ object ParallelCountChange {
   /** Returns the number of ways change can be made from the specified list of
    *  coins for the specified amount of money.
    */
-  def countChange(money: Int, coins: List[Int]): Int = {
-    def countChangeIter(money: Int, coins: List[Int], solutions: Int) : Int = money match {
-      case n if n < 0  => 0
-      case n if n == 0 => 1
-      case n if n > 0 && solutions == coins.length => 0
-      case _      => countChangeIter(money - coins(solutions), coins, solutions) +
-        countChangeIter(money, coins, solutions + 1)
-    }
-
-    countChangeIter(money, coins, 0)
+  def countChange(money: Int, coins: List[Int]): Int = money match {
+    case n if n < 0 => 0
+    case n if n == 0 => 1
+    case n if coins.isEmpty || n < coins.head => 0
+    case _ => countChange(money - coins.head, coins) + countChange(money, coins.tail)
   }
 
   type Threshold = (Int, List[Int]) => Boolean
@@ -62,21 +57,23 @@ object ParallelCountChange {
   /** In parallel, counts the number of ways change can be made from the
    *  specified list of coins for the specified amount of money.
    */
-  def parCountChange(money: Int, coins: List[Int], threshold: Threshold): Int = {
-    ???
+  def parCountChange(money: Int, coins: List[Int], threshold: Threshold): Int = money match {
+    case n if n < 0 => 0
+    case n if n == 0 => 1
+    case n if coins.isEmpty || n < coins.head => 0
+    case n if threshold(n, coins) => countChange(n, coins)
+    case _ => val (l, r) = parallel(countChange(money - coins.head, coins), countChange(money, coins.tail)); l + r
   }
 
   /** Threshold heuristic based on the starting money. */
-  def moneyThreshold(startingMoney: Int): Threshold =
-    ???
+  def moneyThreshold(startingMoney: Int): Threshold = (money, _) => money <= startingMoney * 2 / 3
 
   /** Threshold heuristic based on the total number of initial coins. */
-  def totalCoinsThreshold(totalCoins: Int): Threshold =
-    ???
+  def totalCoinsThreshold(totalCoins: Int): Threshold = (_, _) => false
 
 
   /** Threshold heuristic based on the starting money and the initial list of coins. */
   def combinedThreshold(startingMoney: Int, allCoins: List[Int]): Threshold = {
-    ???
+    (_, _) => false
   }
 }
