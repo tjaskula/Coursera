@@ -23,3 +23,4 @@ VerticalBoxBlur.scala filter=git-crypt diff=git-crypt
 HorizontalBoxBlur.scala filter=git-crypt diff=git-crypt
 ParallelCountChangeSuite.scala filter=git-crypt diff=git-crypt
 ParallelParenthesesBalancing.scala filter=git-crypt diff=git-crypt
+LineOfSight.scala filter=git-crypt diff=git-crypt
