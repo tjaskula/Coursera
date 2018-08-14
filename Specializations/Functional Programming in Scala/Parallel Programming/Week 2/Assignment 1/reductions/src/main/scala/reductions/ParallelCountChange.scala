@@ -62,7 +62,7 @@ object ParallelCountChange {
     case n if n == 0 => 1
     case n if coins.isEmpty || n < coins.head => 0
     case n if threshold(n, coins) => countChange(n, coins)
-    case _ => val (l, r) = parallel(countChange(money - coins.head, coins), countChange(money, coins.tail)); l + r
+    case _ => val (l, r) = parallel(parCountChange(money - coins.head, coins, threshold), parCountChange(money, coins.tail, threshold)); l + r
   }
 
   /** Threshold heuristic based on the starting money. */
