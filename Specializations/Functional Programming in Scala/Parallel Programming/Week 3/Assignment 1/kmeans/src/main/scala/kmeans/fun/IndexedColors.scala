@@ -22,8 +22,8 @@ class IndexedColorFilter(initialImage: Img,
   private var steps = 0
 
   // What could we do here to speed up the computation?
-  val points = imageToPoints(initialImage)
-  val means = initializeIndex(colorCount, points)
+  val points = imageToPoints(initialImage).par
+  val means = initializeIndex(colorCount, points).par
 
   /* The work is done here: */
   private val newMeans = kMeans(points, means, 0.01)
