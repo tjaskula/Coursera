@@ -25,3 +25,4 @@ ParallelCountChangeSuite.scala filter=git-crypt diff=git-crypt
 ParallelParenthesesBalancing.scala filter=git-crypt diff=git-crypt
 LineOfSight.scala filter=git-crypt diff=git-crypt
 KMeans.scala filter=git-crypt diff=git-crypt
+Simulator.scala filter=git-crypt diff=git-crypt
