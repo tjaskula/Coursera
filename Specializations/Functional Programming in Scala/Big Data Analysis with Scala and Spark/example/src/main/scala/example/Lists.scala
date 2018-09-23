@@ -41,7 +41,7 @@ object Lists {
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
     def max(xs: List[Int]): Int = xs match {
-      case Nil => throw NoSuchElementException
+      case Nil => throw new NoSuchElementException()
       case _ => xs.max
     }
   }
