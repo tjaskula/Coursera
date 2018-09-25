@@ -33,4 +33,4 @@ project/plugins/project/
 .git-crypt/
 
 # specific
-wikipedia.dat
+src/main/resources/wikipedia/wikipedia.dat
