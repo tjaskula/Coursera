@@ -26,3 +26,4 @@ ParallelParenthesesBalancing.scala filter=git-crypt diff=git-crypt
 LineOfSight.scala filter=git-crypt diff=git-crypt
 KMeans.scala filter=git-crypt diff=git-crypt
 Simulator.scala filter=git-crypt diff=git-crypt
+WikipediaRanking.scala filter=git-crypt diff=git-crypt
