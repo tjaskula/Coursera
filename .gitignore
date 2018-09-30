@@ -31,3 +31,6 @@ project/plugins/project/
 
 # git-crypt
 .git-crypt/
+
+# specific
+wikipedia.dat
