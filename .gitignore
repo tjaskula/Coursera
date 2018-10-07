@@ -33,4 +33,5 @@ project/plugins/project/
 .git-crypt/
 
 # specific
-src/main/resources/wikipedia/wikipedia.dat
+wikipedia.dat
+stackoverflow.csv
