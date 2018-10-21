@@ -146,7 +146,7 @@ object TimeUsage {
     // more sense for our use case
     // Hint: you can use the `when` and `otherwise` Spark functions
     // Hint: don’t forget to give your columns the expected name with the `as` method
-    val workingStatusProjection: Column = ???
+    val workingStatusProjection: Column = df("telfs", when($"telfs" >= 1 && $"telfs" < 3, "working").otherwise("not working")).as("working")
     val sexProjection: Column = ???
     val ageProjection: Column = ???
 
