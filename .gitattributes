@@ -28,3 +28,4 @@ KMeans.scala filter=git-crypt diff=git-crypt
 Simulator.scala filter=git-crypt diff=git-crypt
 WikipediaRanking.scala filter=git-crypt diff=git-crypt
 StackOverflow.scala filter=git-crypt diff=git-crypt
+TimeUsage.scala filter=git-crypt diff=git-crypt
