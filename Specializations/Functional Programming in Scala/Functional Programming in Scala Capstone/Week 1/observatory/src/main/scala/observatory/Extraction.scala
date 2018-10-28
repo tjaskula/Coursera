@@ -44,7 +44,7 @@ object Extraction {
 
     def toTemperaturePairs(line: String): ((String, String), (Int, Int, Temperature)) = {
       val (stn, wban, month, day, temp) = line.split(",", -1) match { case Array(x, y, v, w, z) => (x, y, v, w, z) }
-      ((stn, wban), (month.toInt, day.toInt, (temp.toDouble - 32) * (5/9)))
+      ((stn, wban), (month.toInt, day.toInt, (temp.toDouble - 32) * (5.0/9.0)))
     }
 
     val stationsRdd = spark.sparkContext.textFile(fsPath(stationsFile))

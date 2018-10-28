@@ -24,8 +24,8 @@ class ExtractionTest extends FunSuite  with BeforeAndAfterAll {
   }
 
   test("'occurrencesOfLang' should work for (specific) RDD with one element") {
-//    assert(initializeExtraction(), " -- did you fill in all the values in WikipediaRanking (conf, sc, wikiRdd)?")
-//    import WikipediaRanking._
+    assert(initializeExtraction(), " -- did you fill in all the values in WikipediaRanking (conf, sc, wikiRdd)?")
+    import Extraction._
 //    val rdd = sc.parallelize(Seq(WikipediaArticle("title", "Java Jakarta")))
 //    val res = (occurrencesOfLang("Java", rdd) == 1)
 //    assert(res, "occurrencesOfLang given (specific) RDD with one element should equal to 1")
