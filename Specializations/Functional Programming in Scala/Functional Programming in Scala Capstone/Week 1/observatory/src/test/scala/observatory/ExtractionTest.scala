@@ -1,11 +1,10 @@
 package observatory
 
-import org.junit.runner.RunWith
-import org.scalatest.{BeforeAndAfterAll, FunSuite}
-import org.scalatest.junit.JUnitRunner
+import java.time.LocalDate
 
-@RunWith(classOf[JUnitRunner])
-class ExtractionTest extends FunSuite  with BeforeAndAfterAll {
+import org.scalatest.{FunSuite}
+
+trait ExtractionTest extends FunSuite {
   def initializeExtraction(): Boolean =
     try {
       Extraction
@@ -17,17 +16,17 @@ class ExtractionTest extends FunSuite  with BeforeAndAfterAll {
         false
     }
 
-  override def afterAll(): Unit = {
-    assert(initializeExtraction(), " -- did you fill in all the values in Extraction (conf, sc, wikiRdd)?")
+  test("'locationYearlyAverageRecords' should work") {
+    assert(initializeExtraction(), " -- did you fill in all the values in Extraction (conf, sc, rdd)?")
     import Extraction._
-    spark.stop()
-  }
-
-  test("'occurrencesOfLang' should work for (specific) RDD with one element") {
-    assert(initializeExtraction(), " -- did you fill in all the values in WikipediaRanking (conf, sc, wikiRdd)?")
-    import Extraction._
-//    val rdd = sc.parallelize(Seq(WikipediaArticle("title", "Java Jakarta")))
-//    val res = (occurrencesOfLang("Java", rdd) == 1)
-//    assert(res, "occurrencesOfLang given (specific) RDD with one element should equal to 1")
+    val res = locationYearlyAverageRecords(Seq(
+      (LocalDate.of(2015, 8, 11), Location(37.35, -78.433), 27.3),
+      (LocalDate.of(2015, 12, 6), Location(37.358, -78.438), 4.0),
+      (LocalDate.of(2015, 1, 29), Location(37.358, -78.438), 2.0)
+    ))
+    assert(res == Seq(
+      (Location(37.35, -78.433), 27.3),
+      (Location(37.358, -78.438), 3.0)
+    ).sortBy(_._2))
   }
 }

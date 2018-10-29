@@ -9,6 +9,6 @@ object Grading {
     * ''You'' have to update this value according to your progress
     * in the project!
     */
-  val milestone: Int = 1
+  val milestone: Int = 2
 
 }
