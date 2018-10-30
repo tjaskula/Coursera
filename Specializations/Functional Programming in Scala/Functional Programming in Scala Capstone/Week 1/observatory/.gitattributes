@@ -40,3 +40,6 @@ src/main/resources/1998.csv filter=lfs diff=lfs merge=lfs -text
 src/main/resources/2003.csv filter=lfs diff=lfs merge=lfs -text
 src/main/resources/2011.csv filter=lfs diff=lfs merge=lfs -text
 src/main/resources/2013.csv filter=lfs diff=lfs merge=lfs -text
+src/test/resources/1975.csv filter=lfs diff=lfs merge=lfs -text
+src/test/resources/2015.csv filter=lfs diff=lfs merge=lfs -text
+src/test/resources/stations.csv filter=lfs diff=lfs merge=lfs -text

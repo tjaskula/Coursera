@@ -1,29 +1,17 @@
 package observatory
 
-import java.nio.file.Paths
 import java.time.LocalDate
 
+import observatory.utils.{Resources, SparkJob}
+import utils.Resources._
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.SparkSession
 
 /**
   * 1st milestone: data extraction
   */
-object Extraction {
+object Extraction extends SparkJob {
 
-  import org.apache.log4j.{Level, Logger}
-  Logger.getLogger("org.apache.spark").setLevel(Level.WARN)
-
-  val spark: SparkSession =
-    SparkSession
-      .builder()
-      .appName("Observatory")
-      .config("spark.master", "local")
-      .getOrCreate()
-
-  /** @return The filesystem path of the given resource */
-  def fsPath(resource: String): String =
-    Paths.get(getClass.getResource(resource).toURI).toString
+  import spark.implicits._
 
   /**
     * @param year             Year number
@@ -36,25 +24,34 @@ object Extraction {
   }
 
   def sparkLocateTemperatures(year: Year, stationsFile: String, temperaturesFile: String): RDD[(LocalDate, Location, Temperature)] = {
-    def toStationsPairs(line: String): ((String, String), Location) = {
-      val (stn, wban, lat, lon) = line.split(",", -1) match { case Array(x, y, w, z) => (x, y, w, z) }
-      ((stn, wban), Location(if (lat == "") 0.0 else lat.toDouble, if (lon == "") 0.0 else lon.toDouble))
-    }
 
-    def toTemperaturePairs(line: String): ((String, String), (Int, Int, Temperature)) = {
-      val (stn, wban, month, day, temp) = line.split(",", -1) match { case Array(x, y, v, w, z) => (x, y, v, w, z) }
-      ((stn, wban), (month.toInt, day.toInt, (temp.toDouble - 32) * (5.0/9.0)))
-    }
+    val stationsRdd = readStations(stationsFile)
 
-    val stationsRdd = spark.sparkContext.textFile(fsPath(stationsFile))
-      .map(toStationsPairs)
-      .filter(stationPairs => stationPairs._2.lat != 0.0 && stationPairs._2.lon != 0.0)
-
-    val temperaturesRdd = spark.sparkContext.textFile(fsPath(temperaturesFile)).map(toTemperaturePairs)
+    val temperaturesRdd = readTemperatures(year, temperaturesFile)
 
     stationsRdd
       .join(temperaturesRdd)
-      .map(p => (LocalDate.of(year, p._2._2._1, p._2._2._2), p._2._1, p._2._2._3))
+      .map(p => (p._2._2.date, p._2._1.location, p._2._2.temperature))
+  }
+
+  def readStations(stationsFile: String): RDD[((String, String), Station)] = {
+    def toStation(line: String): ((String, String), Station) = {
+      val (stn, wban, lat, lon) = line.split(",", -1) match { case Array(x, y, w, z) => (x, y, w, z) }
+      ((stn, wban), Station(stn, wban, lat, lon))
+    }
+
+    spark.sparkContext.textFile(fsPath(stationsFile))
+      .map(toStation)
+      .filter(station => station._2.location.lat != 0.0 && station._2.location.lon != 0.0)
+  }
+
+  def readTemperatures(year: Year, temperaturesFile: String): RDD[((String, String), LocalizedTemperature)] = {
+    def toLocalizedTemperature(line: String): ((String, String), LocalizedTemperature) = {
+      val (stn, wban, month, day, temp) = line.split(",", -1) match { case Array(x, y, v, w, z) => (x, y, v, w, z) }
+      ((stn, wban), LocalizedTemperature(stn, wban, year, month, day, temp))
+    }
+
+    spark.sparkContext.textFile(fsPath(temperaturesFile)).map(toLocalizedTemperature)
   }
 
   /**
