@@ -34,10 +34,11 @@ object Extraction extends SparkJob {
       .map(p => (p._2._2.date, p._2._1.location, p._2._2.temperature))
   }
 
-  def readStations(stationsFile: String): RDD[((String, String), Station)] = {
-    def toStation(line: String): ((String, String), Station) = {
+  def readStations(stationsFile: String): RDD[(String, Station)] = {
+    def toStation(line: String): (String, Station) = {
       val (stn, wban, lat, lon) = line.split(",", -1) match { case Array(x, y, w, z) => (x, y, w, z) }
-      ((stn, wban), Station(stn, wban, lat, lon))
+      val station = Station(stn, wban, lat, lon)
+      (station.id, station)
     }
 
     spark.sparkContext.textFile(fsPath(stationsFile))
@@ -45,10 +46,11 @@ object Extraction extends SparkJob {
       .filter(station => station._2.location.lat != 0.0 && station._2.location.lon != 0.0)
   }
 
-  def readTemperatures(year: Year, temperaturesFile: String): RDD[((String, String), LocalizedTemperature)] = {
-    def toLocalizedTemperature(line: String): ((String, String), LocalizedTemperature) = {
+  def readTemperatures(year: Year, temperaturesFile: String): RDD[(String, LocalizedTemperature)] = {
+    def toLocalizedTemperature(line: String): (String, LocalizedTemperature) = {
       val (stn, wban, month, day, temp) = line.split(",", -1) match { case Array(x, y, v, w, z) => (x, y, v, w, z) }
-      ((stn, wban), LocalizedTemperature(stn, wban, year, month, day, temp))
+      val lt = LocalizedTemperature(stn, wban, year, month, day, temp)
+      (lt.id, lt)
     }
 
     spark.sparkContext.textFile(fsPath(temperaturesFile)).map(toLocalizedTemperature)

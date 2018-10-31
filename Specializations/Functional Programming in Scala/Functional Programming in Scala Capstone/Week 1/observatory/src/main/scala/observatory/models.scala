@@ -15,12 +15,12 @@ case class Location(lat: Double, lon: Double)
   */
 
 case class Station(private val stn: String, private val wban: String, private val lat: String, private val lon: String) {
-  val id = (stn, wban)
+  val id = s"$stn${if (wban != "") "~" + wban else "" }"
   val location: Location = Location(if (lat == "") 0.0 else lat.toDouble, if (lon == "") 0.0 else lon.toDouble)
 }
 
 case class LocalizedTemperature(private val stn: String, private val wban: String, private val y: Year, private val m: String, private val d: String, private val temp: String) {
-  val id = (stn, wban)
+  val id = s"$stn${if (wban != "") "~" + wban else "" }"
   val date = LocalDate.of(y, m.toInt, d.toInt)
   val temperature: Temperature = 0.0 //(temp.toDouble - 32) * (5.0/9.0)
 }

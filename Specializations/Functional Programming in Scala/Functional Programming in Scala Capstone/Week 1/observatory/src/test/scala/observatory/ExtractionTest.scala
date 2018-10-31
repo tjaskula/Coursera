@@ -14,8 +14,8 @@ trait ExtractionTest extends FunSuite with SparkJob {
   val stationsPath:String = "/stations.csv"
   val temperaturePath:String = s"/$year.csv"
 
-  lazy val stations: RDD[((String, String), Station)] = readStations(stationsPath).persist
-  lazy val temperatures: RDD[((String, String), LocalizedTemperature)] = readTemperatures(year, temperaturePath).persist
+  lazy val stations: RDD[(String, Station)] = readStations(stationsPath).persist
+  lazy val temperatures: RDD[(String, LocalizedTemperature)] = readTemperatures(year, temperaturePath).persist
   // lazy val joinedV1:Dataset[StationDateLocationTemp] = Extraction.joinStationsWithTemperaturesV1(stationsV1, temperaturesV1).persist
 
   lazy val locateTemperatures = Extraction.locateTemperatures(year, stationsPath, temperaturePath)
@@ -23,18 +23,17 @@ trait ExtractionTest extends FunSuite with SparkJob {
 
   test("#1: stations") {
     if(debug) stations.foreach(println)
-    assert(stations.filter(s => s._1._1 == "007005").count() === 0,"id: 007005")
-    assert(stations.filter(s => s._1._1 == "007018").count() === 0,"id: 007018")
-    assert(stations.filter(s => s._1._1 == "725346" && s._1._2 == "94866").count() === 1,"id: 725346,94866")
-    assert(stations.filter(s => s._1._1 == "725346" && s._1._2 == "").count() === 1,"id: 725346")
-    assert(stations.filter(s => s._1._2 == "68601").count() === 1,"id: 68601")
+    assert(stations.filter(s => s._1 == "007005").count() === 0,"id: 007005")
+    assert(stations.filter(s => s._1 == "007018").count() === 0,"id: 007018")
+    assert(stations.filter(s => s._1 == "725346~94866").count() === 1,"id: 725346~94866")
+    assert(stations.filter(s => s._1 == "725346").count() === 1,"id: 725346")
+    assert(stations.filter(s => s._1 == "~68601").count() === 1,"id: ~68601")
     assert(stations.count() === 27708,"Num stations")
   }
 
   test("#1: temperatures") {
     if(debug) temperatures.foreach(println)
-    val count = temperatures.filter(t => t._1._1 == "010010").collect().length
-    assert(count === 363,"id: 010010")
+    assert(temperatures.filter(t => t._1 == "010010").count() === 363,"id: 010010")
   }
 
   test("#1: 'locationYearlyAverageRecords' should work") {
