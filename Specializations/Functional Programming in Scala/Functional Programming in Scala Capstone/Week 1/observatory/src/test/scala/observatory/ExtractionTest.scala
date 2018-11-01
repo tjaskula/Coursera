@@ -34,6 +34,7 @@ trait ExtractionTest extends FunSuite with SparkJob {
   test("#1: temperatures") {
     if(debug) temperatures.foreach(println)
     assert(temperatures.filter(t => t._1 == "010010").count() === 363,"id: 010010")
+    assert(temperatures.filter(t => t._1 == "010010" && t._2.date == LocalDate.of(1975, 1, 1) && t._2.temperature == (23.2-32)/9*5).count() === 1,"id: 010010")
   }
 
   test("#1: 'locationYearlyAverageRecords' should work") {

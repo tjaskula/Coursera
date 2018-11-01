@@ -22,7 +22,7 @@ case class Station(private val stn: String, private val wban: String, private va
 case class LocalizedTemperature(private val stn: String, private val wban: String, private val y: Year, private val m: String, private val d: String, private val temp: String) {
   val id = s"$stn${if (wban != "") "~" + wban else "" }"
   val date = LocalDate.of(y, m.toInt, d.toInt)
-  val temperature: Temperature = 0.0 //(temp.toDouble - 32) * (5.0/9.0)
+  val temperature: Temperature = (temp.toDouble - 32) * (5.0/9.0)
 }
 
 /**
