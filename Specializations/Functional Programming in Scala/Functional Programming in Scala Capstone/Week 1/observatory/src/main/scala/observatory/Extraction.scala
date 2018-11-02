@@ -24,14 +24,13 @@ object Extraction extends SparkJob {
   }
 
   def sparkLocateTemperatures(year: Year, stationsFile: String, temperaturesFile: String): RDD[(LocalDate, Location, Temperature)] = {
+    val joined = joinedStationsAndTemperatures(readStations(stationsFile), readTemperatures(year, temperaturesFile))
 
-    val stationsRdd = readStations(stationsFile)
+    joined.map(p => (p._2._2.date, p._2._1.location, p._2._2.temperature))
+  }
 
-    val temperaturesRdd = readTemperatures(year, temperaturesFile)
-
-    stationsRdd
-      .join(temperaturesRdd)
-      .map(p => (p._2._2.date, p._2._1.location, p._2._2.temperature))
+  def joinedStationsAndTemperatures(stations: RDD[(String, Station)], temperatures: RDD[(String, LocalizedTemperature)]): RDD[(String, (Station, LocalizedTemperature))] = {
+    stations.join(temperatures)
   }
 
   def readStations(stationsFile: String): RDD[(String, Station)] = {

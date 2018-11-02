@@ -16,7 +16,7 @@ trait ExtractionTest extends FunSuite with SparkJob {
 
   lazy val stations: RDD[(String, Station)] = readStations(stationsPath).persist
   lazy val temperatures: RDD[(String, LocalizedTemperature)] = readTemperatures(year, temperaturePath).persist
-  // lazy val joinedV1:Dataset[StationDateLocationTemp] = Extraction.joinStationsWithTemperaturesV1(stationsV1, temperaturesV1).persist
+  lazy val joined: RDD[(String, (Station, LocalizedTemperature))] = joinedStationsAndTemperatures(stations, temperatures).persist
 
   lazy val locateTemperatures = Extraction.locateTemperatures(year, stationsPath, temperaturePath)
   lazy val locateAverage = Extraction.locationYearlyAverageRecords(locateTemperatures)
@@ -35,6 +35,12 @@ trait ExtractionTest extends FunSuite with SparkJob {
     if(debug) temperatures.foreach(println)
     assert(temperatures.filter(t => t._1 == "010010").count() === 363,"id: 010010")
     assert(temperatures.filter(t => t._1 == "010010" && t._2.date == LocalDate.of(1975, 1, 1) && t._2.temperature == (23.2-32)/9*5).count() === 1,"id: 010010")
+  }
+
+  test("#1: joined"){
+    if(debug) joined.foreach(println)
+    assert(joined.filter(j => j._2._2.date == LocalDate.of(1975, 1,1) && j._2._1.location == Location(70.933,-008.667)).count() === 1,"id: 010010 ")
+    assert(joined.filter(j => j._2._2.date == LocalDate.of(1975, 1,1) && j._2._1.location == Location(70.933,-008.666)).count() === 0,"no loc ")
   }
 
   test("#1: 'locationYearlyAverageRecords' should work") {
