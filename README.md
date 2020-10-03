@@ -1,2 +1,2 @@
-Coursera exercices
+Coursera exercises
 ==================
