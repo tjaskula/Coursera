@@ -17,9 +17,9 @@ J_history = zeros(num_iters, 1);
       %       of the cost function (computeCost) and gradient here.
       %
 
-      h = X * theta; % hypothesis
-      % X' * (h - y) = sum((h - y) .* X)'
-      theta -= alpha * (1 / m) * (X' * (h - y));
+     delta=1/m* (X'*X*theta-X'*y); 
+     theta=theta-alpha.*delta;
+
 
       % ============================================================
 
